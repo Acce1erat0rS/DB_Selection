@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:form-login login-page="/login.jsp" />
+        <sec:intercept-url pattern="/login.jsp"
+            access="permitAll" />
+        <sec:intercept-url pattern="/static/**"
+            access="permitAll" />
+        <sec:intercept-url pattern="/resources/**"
+            access="permitAll" />
+        <sec:intercept-url pattern="/**"
+        access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+    </sec:http>
+
+    <sec:authentication-manager alias="authenticationManager">
+        <sec:authentication-provider>
+            <sec:password-encoder ref="passwordEncoder" />
+            <sec:user-service>
+                <!--http://hotstrong.iteye.com/blog/1160153-->
+                <sec:user name="demo"
+                    password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                    authorities="ROLE_ADMIN" />
+
+                <sec:user name="liutianyu"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_USER" />
+
+                <sec:user name="wangyahui"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_USER" />
+
+                <sec:user name="weiheng"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_USER" />
+
+                <sec:user name="longjiao"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_USER" />
+
+                <sec:user name="huangzihua"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_USER" />
+            </sec:user-service>
+
+            <!--<jdbc-user-service data-source-ref="dataSource"-->
+                               <!--group-authorities-by-username-query="SELECT g.id,g.groupname,role.role-->
+                             <!--FROM t_group AS g-->
+                             <!--LEFT OUTER JOIN t_group_role AS grouprole ON (g.id = grouprole.groupid)-->
+                             <!--LEFT OUTER JOIN t_role AS role ON (role.id = grouprole.roleid)-->
+                             <!--LEFT OUTER JOIN t_group_user AS groupuser on (g.id = groupuser.groupid)-->
+                             <!--LEFT OUTER JOIN t_admin ON (t_admin.id = groupuser.userid)-->
+                             <!--WHERE t_admin.nickname = ?"-->
+                               <!--users-by-username-query="SELECT t_admin.nickname AS username,t_admin.passwd as password,'true' AS enabled-->
+                             <!--FROM t_admin-->
+                             <!--WHERE t_admin.nickname = ?"-->
+                               <!--authorities-by-username-query="SELECT t_admin.nickname AS username,role.role as authorities-->
+                               <!--FROM t_admin-->
+                               <!--LEFT OUTER JOIN t_user_role AS userrole ON(t_admin.id = userrole.userid)-->
+                               <!--LEFT OUTER JOIN t_role AS role ON (userrole.roleid = role.id)-->
+                               <!--WHERE t_admin.nickname = ?" />-->
+
+            <!--users-by-username-query="select user_id,user_password from t_users where user_id = ?"-->
+            <!--authorities-by-username-query="select user_id, user_role from t_users where user_id = ?"-->
+
+
+            <!--<sec:jdbc-user-service data-source-ref="realDataSource"-->
+                                   <!--users-by-username-query="SELECT user_id, user_password, CASE ENABLED WHEN 1 THEN 'true' ELSE 'false' END 'ENABLED' FROM t_user WHERE USER_name=?;"-->
+                                   <!--authorities-by-username-query="select user_id, user_roles from t_user where user_name = ?;"-->
+                    <!--/>-->
+
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>

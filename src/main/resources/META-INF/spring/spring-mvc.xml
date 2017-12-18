@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <mvc:annotation-driven enableMatrixVariables="false">
+        <mvc:argument-resolvers>
+            <bean
+                class="org.springframework.data.web.PageableArgumentResolver">
+            </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+        <!--<property name="mappings">-->
+            <!--<props>-->
+                <!--<prop key="/greeting">UserHelloController</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash;注册一个Controller&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean id="UserHelloController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController">&ndash;&gt;-->
+    <!--&lt;!&ndash;</bean>&ndash;&gt;-->
+    <!--<bean id="UserHelloController" class="com.OriginLeague.mining.app.user.UserHelloController">-->
+        <!--<property name="i" value="23"></property>-->
+    <!--</bean>-->
+
+
+
+
+    <context:component-scan base-package="com.OriginLeague.mining.app" />
+
+    <mvc:resources mapping="/resources/**"
+        location="/resources/,classpath:META-INF/resources/"
+        cache-period="#{60 * 60}" />
+
+    <mvc:default-servlet-handler />
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean
+                class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                <property name="paramName" value="locale"></property>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+
+
+
+
+
+    <bean id="viewResolver"
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="2" />
+    </bean>
+
+    <bean
+        class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+        <property name="order" value="1" />
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles-definitions.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+        <property name="order" value="1" />
+    </bean>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760000" />
+        <property name="maxInMemorySize" value="40960" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="order" value="1" />
+        <property name="exceptionMappings">
+            <util:map>
+                <entry key="ResourceNotFoundException" value="notFoundError" />
+            </util:map>
+        </property>
+        <property name="statusCodes">
+            <util:map>
+                <entry key="notFoundError" value="404" />
+            </util:map>
+        </property>
+        <property name="defaultStatusCode" value="500" />
+        <property name="defaultErrorView" value="systemError" />
+        <property name="warnLogCategory"
+                  value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" />
+    </bean>
+
+
+
+
+
+</beans>
