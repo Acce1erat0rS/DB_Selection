@@ -20,11 +20,12 @@ ${request}
 	<table class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>chapter</th>
-				<th>homework content</th>
-				<th>deadline</th>
-				<th>actions</th>
+				<th>课题编号</th>
+				<th>课题名称</th>
+				<th>课题类别</th>
+				<th>截止日期</th>
+				<th>课题要求</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,6 +35,7 @@ ${request}
 					<td>${f:h(homework.chapter)}</td>
 					<td>${f:h(homework.content)}</td>
 					<td>${f:h(homework.deadline)}</td>
+					<td>${f:h(homework.requirement)}</td>
 					<sec:authorize ifAllGranted="ROLE_ADMIN">
 					<td><form:form
 							action="${pageContext.request.contextPath}/homework"
