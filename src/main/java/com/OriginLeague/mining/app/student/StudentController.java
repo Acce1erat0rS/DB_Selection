@@ -76,11 +76,11 @@ public class StudentController {
     }
 
     @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
-    public String updateForm(@RequestParam("id") String id, StudentForm form,
+    public String updateForm(@RequestParam("SID") String id, StudentForm form,
             Model model) {
 
         Student student = studentService.findOne(id);
-        beanMapper.map(student, form, "studentExcludePassword");
+        form = beanMapper.map(student, form.getClass());
 
         model.addAttribute(student);
 
@@ -97,7 +97,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "update", params = "redo", method = RequestMethod.POST)
-    public String updateRedo(@RequestParam("id") String id, StudentForm form,
+    public String updateRedo(@RequestParam("SID") String id, StudentForm form,
             Model model) {
 
 
@@ -114,7 +114,7 @@ public class StudentController {
 
         Student student = studentService.findOne(form.getSID());
         beanMapper.map(form, student);
-
+        studentService.save(student);
 
         return "redirect:/student/update?complete";
     }
@@ -127,10 +127,10 @@ public class StudentController {
     // delete flow
 
     @RequestMapping(value = "delete", params = "form", method = RequestMethod.GET)
-    public String deleteForm(@RequestParam("id") String id, StudentForm form,
+    public String deleteForm(@RequestParam("SID") String sid, StudentForm form,
             Model model) {
 
-        Student student = studentService.findOne(id);
+        Student student = studentService.findOne(sid);
         beanMapper.map(student, form);
 
         model.addAttribute(student);

@@ -42,14 +42,14 @@ ${request}
 
 			<c:forEach var="teacher" items="${page.content}">
 					<tr>
-						<td>${f:h(teacher.TID)}</td>
+						<td>${f:h(teacher.tid)}</td>
 						<td>${f:h(teacher.name)}</td>
 						<td>${f:h(teacher.email)}</td>
 						<td>${f:h(teacher.profession)}</td>
 						<td><form:form
 								action="${pageContext.request.contextPath}/teacher"
 								class="form-inline">
-							<input type="hidden" name="id" value="${f:h(teacher.TID)}" />
+							<input type="hidden" name="tid" value="${f:h(teacher.tid)}" />
 							<input type="submit" class="btn btn-default"
 								   name="redirectToUpdate" value="更新信息" />
 							<input type="submit" class="btn btn-danger"

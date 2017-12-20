@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-	<form:form action="${pageContext.request.contextPath}/user/create"
+	<form:form action="${pageContext.request.contextPath}/teacher/create"
 		modelAttribute="teacherForm" class="form-horizontal">
 		<fieldset>
 			<legend>New User</legend>
@@ -7,18 +7,18 @@
 				<form:label path="name" class="col col-sm-2 control-label">User Name</form:label>
 				<div class="col col-sm-10">
 					${f:h(teacherForm.name)}
-					<form:hidden path="TID" />
-					<form:errors path="TID" cssClass="text-danger" />
+					<form:hidden path="tid" />
+					<form:errors path="tid" cssClass="text-danger" />
 				</div>
 			</div>
-			<%--<div class="form-group">--%>
-				<%--<form:label path="email" class="col col-sm-2 control-label">E-mail</form:label>--%>
-				<%--<div class="col col-sm-10">--%>
-					<%--${f:h(teacherForm.email)}--%>
-					<%--<form:hidden path="email" />--%>
-					<%--<form:errors path="email" cssClass="text-danger" />--%>
-				<%--</div>--%>
-			<%--</div>--%>
+			<div class="form-group">
+				<form:label path="email" class="col col-sm-2 control-label">E-mail</form:label>
+				<div class="col col-sm-10">
+					${f:h(teacherForm.email)}
+					<form:hidden path="email" />
+					<form:errors path="email" cssClass="text-danger" />
+				</div>
+			</div>
 			<%--<div class="form-group">--%>
 				<%--<form:label path="birth" class="col col-sm-2 control-label">User Birth</form:label>--%>
 				<%--<div class="col col-sm-10">--%>

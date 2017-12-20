@@ -50,16 +50,16 @@ public class TeacherSearchController {
     }
 
     @RequestMapping(params = "redirectToUpdate")
-    public String redirectToUpdateForm(@RequestParam("id") String id,
+    public String redirectToUpdateForm(@RequestParam("tid") String id,
             RedirectAttributes attr) {
-        attr.addAttribute("id", id);
+        attr.addAttribute("tid", id);
         return "redirect:/teacher/update?form";
     }
 
     @RequestMapping(params = "redirectToDelete")
-    public String redirectToDeleteForm(@RequestParam("id") String id,
+    public String redirectToDeleteForm(@RequestParam("tid") String id,
             RedirectAttributes attr) {
-        attr.addAttribute("id", id);
+        attr.addAttribute("tid", id);
         return "redirect:/teacher/delete?form";
     }
 }

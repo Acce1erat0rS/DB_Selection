@@ -31,13 +31,11 @@
 			<div class="form-group">
 				<div class="col col-sm-10 col-sm-offset-2">
 
-					<sec:authorize ifAllGranted="ROLE_ADMIN">
 						<form:hidden path="id" value="${f:h(user.id)}" />
 						<form:hidden path="version" value="${f:h(user.version)}" />
 						<input type="submit" class="btn btn-danger" name="delete"
 							   value="删除" /> <input type="submit" class="btn btn-default"
 													name="redirectToList" value="返回列表" />
-					</sec:authorize>
 
 				</div>
 			</div>

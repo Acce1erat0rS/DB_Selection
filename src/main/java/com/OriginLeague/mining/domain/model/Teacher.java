@@ -12,18 +12,18 @@ public class Teacher {
 
     @Id
     @Column(name = "TID", unique = true, nullable = false)
-    private String TID;
+    private String tid;
 
     @Column(name = "ID", unique = true, nullable = true)
     private String id;
 
-    @Column(name = "MID", unique = true, nullable = true)
-    private String Mid;
+    @Column(name = "MID", unique = false, nullable = true)
+    private String mid;
 
-    @Column(name = "Name", unique = true, nullable = true)
+    @Column(name = "Name", unique = false, nullable = true)
     private String name;
 
-    @Column(name = "Profession", unique = true, nullable = true)
+    @Column(name = "Profession", unique = false, nullable = true)
     private String profession;
 
     @Column(name = "Email", unique = true, nullable = true)
@@ -32,13 +32,7 @@ public class Teacher {
     @Column(name = "Tel", unique = true, nullable = true)
     private String tel;
 
-    public String getTID() {
-        return TID;
-    }
 
-    public void setTID(String TID) {
-        this.TID = TID;
-    }
 
     public String getId() {
         return id;
@@ -48,12 +42,21 @@ public class Teacher {
         this.id = id;
     }
 
+
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
     public String getMid() {
-        return Mid;
+        return mid;
     }
 
     public void setMid(String mid) {
-        Mid = mid;
+        this.mid = mid;
     }
 
     public String getName() {

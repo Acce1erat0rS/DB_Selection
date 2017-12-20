@@ -13,12 +13,12 @@ text-decoration: none;
 -webkit-transition: color 0.3s ease-in-out;
 -moz-transition: color 0.3s ease-in-out;
 transition: color 0.3s ease-in-out"><span class="strip"></span><span style="font-size: 18px;line-height:30px;font-family:Microsoft YaHei;padding-left: 14px;
-border-left: 3px solid #c0c0c0;">课程介绍</span></a></h3>
+border-left: 3px solid #c0c0c0;">选题说明</span></a></h3>
 <div class="intro" id="intro" style="
 color: #333;
 padding-bottom: 35px;
 font-size: 14px;line-height:30px;font-family:Microsoft YaHei;display:none" ><p></p><p>
-本课程完整覆盖数据挖掘领域的各项核心技术，包括数据预处理、分类、聚类、回归、关联、推荐、集成学习、进化计算等。强调在知识的广度、深度和趣味性之间寻找最佳平衡点，在生动幽默中讲述数据挖掘的核心思想、关键技术以及一些在其它相关课程和教科书中少有涉及的重要知识点。本课程适合对大数据和数据科学感兴趣的各专业学生以及工程技术人员学习，不追求纯粹的理论推导，而是把理论与实践有机结合，让学生学到活的知识、有用的知识和真正属于自己的知识，特别是数据分析领域的研究方法和思维方式。
+这里是选题说明
 </p><p></p></div>
 
 <h3><a href="#" onclick="h('details')" title="单击收起，双击展开" style="outline: none;
@@ -26,11 +26,11 @@ text-decoration: none;
 -webkit-transition: color 0.3s ease-in-out;
 -moz-transition: color 0.3s ease-in-out;
 transition: color 0.3s ease-in-out"><span class="strip"></span><span style="font-size: 18px;line-height:30px;font-family:Microsoft YaHei;padding-left: 14px;
-border-left: 3px solid #c0c0c0;">课程大纲</span></a></h3>
+border-left: 3px solid #c0c0c0;">毕设要求</span></a></h3>
 
 <div id="details" >
 
-<dl style="font-family:Microsoft YaHei;line-height:30px"><dt>走进数据科学：博大精深，美不胜收</dt><dd>整装待发</dd><dd>学而不思则罔</dd><dd>知行合一</dd><dd>从数据到知识</dd><dd>分类问题</dd><dd>聚类及其它数据挖掘问题</dd><dd>隐私保护与并行计算</dd><dd>迷雾重重</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>数据预处理：抽丝剥茧，去伪存真</dt><dd>数据清洗</dd><dd>异常值与重复数据检测</dd><dd>类型转换与采样</dd><dd>数据描述与可视化</dd><dd>特征选择</dd><dd>主成分分析</dd><dd>线性判别分析</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>从贝叶斯到决策树：意料之外，情理之中</dt><dd>贝叶斯奇幻之旅</dd><dd>朴素是一种美德</dd><dd>数据、规则与树</dd><dd>植树造林学问大</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>神经网络：巨量并行，智慧无限</dt><dd>智慧之源神经元</dd><dd>会学习的神经元</dd><dd>从一个到一群</dd><dd>层次分明，责任到人</dd><dd>管中窥豹，抛砖引玉</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>支持向量机：数学之美，巅峰之作</dt><dd>最大间隔</dd><dd>线性SVM</dd><dd>数学家的把戏</dd><dd>致敬真神</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>聚类分析：物以类聚，人以群分</dt><dd>无监督学习</dd><dd>K-Means</dd><dd>期望最大法</dd><dd>密度与层次</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>关联规则：营销购物，自有乾坤</dt><dd>项集与规则</dd><dd>支持度与置信度</dd><dd>误区</dd><dd>Apriori 算法</dd><dd>实例分析</dd><dd>序列模式</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>推荐算法：察言观色，投其所好</dt><dd>无所不在的推荐</dd><dd>隐含语义分析</dd><dd>PageRank传奇</dd><dd>协同过滤</dd><dd>告诉你一个真实的推荐</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>集成学习：兼听则明，偏听则暗</dt><dd>民主协商：Ensemble</dd><dd>群策群议：Bagging</dd><dd>环环相扣：Boosting</dd><dd>集成之美：AdaBoost</dd><dd>继往开来：RegionBoost</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>进化计算：大道至简，万物之本</dt><dd>人与自然</dd><dd>尽善尽美</dd><dd>走向进化</dd><dd>遗传算法初探</dd><dd>遗传算法进阶</dd><dd>遗传程序设计</dd><dd>万物皆进化</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>美丽数据说：阆苑仙葩，美玉无瑕</dt><dd>数据之美</dd><dd>南国紫荆亦芬芳</dd></dl>
+<dl style="font-family:Microsoft YaHei;line-height:30px"><dt>选题背景与意义</dt><dd>整装待发</dd><dd>学而不思则罔</dd><dd>知行合一</dd><dd>从数据到知识</dd><dd>分类问题</dd><dd>聚类及其它数据挖掘问题</dd><dd>隐私保护与并行计算</dd><dd>迷雾重重</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>研究目标与内容</dt><dd>数据清洗</dd><dd>异常值与重复数据检测</dd><dd>类型转换与采样</dd><dd>数据描述与可视化</dd><dd>特征选择</dd><dd>主成分分析</dd><dd>线性判别分析</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>研究方法与手段</dt><dd>贝叶斯奇幻之旅</dd><dd>朴素是一种美德</dd><dd>数据、规则与树</dd><dd>植树造林学问大</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>参考文献</dt><dd>智慧之源神经元</dd><dd>会学习的神经元</dd><dd>从一个到一群</dd><dd>层次分明，责任到人</dd><dd>管中窥豹，抛砖引玉</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>选择原因</dt><dd>最大间隔</dd><dd>线性SVM</dd><dd>数学家的把戏</dd><dd>致敬真神</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>聚类分析：物以类聚，人以群分</dt><dd>无监督学习</dd><dd>K-Means</dd><dd>期望最大法</dd><dd>密度与层次</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>关联规则：营销购物，自有乾坤</dt><dd>项集与规则</dd><dd>支持度与置信度</dd><dd>误区</dd><dd>Apriori 算法</dd><dd>实例分析</dd><dd>序列模式</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>推荐算法：察言观色，投其所好</dt><dd>无所不在的推荐</dd><dd>隐含语义分析</dd><dd>PageRank传奇</dd><dd>协同过滤</dd><dd>告诉你一个真实的推荐</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>集成学习：兼听则明，偏听则暗</dt><dd>民主协商：Ensemble</dd><dd>群策群议：Bagging</dd><dd>环环相扣：Boosting</dd><dd>集成之美：AdaBoost</dd><dd>继往开来：RegionBoost</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>进化计算：大道至简，万物之本</dt><dd>人与自然</dd><dd>尽善尽美</dd><dd>走向进化</dd><dd>遗传算法初探</dd><dd>遗传算法进阶</dd><dd>遗传程序设计</dd><dd>万物皆进化</dd><dd>相关学习资源</dd></dl><dl style="font-family:Microsoft YaHei;line-height:30px"><dt>美丽数据说：阆苑仙葩，美玉无瑕</dt><dd>数据之美</dd><dd>南国紫荆亦芬芳</dd></dl>
 </div>
 </div>
 

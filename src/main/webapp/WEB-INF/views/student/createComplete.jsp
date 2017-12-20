@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <p class="alert alert-success">
       Created Successfully!<br> <a
-        href="${pageContext.request.contextPath}/user/list" class="btn btn-default">Back
+        href="${pageContext.request.contextPath}/student/list" class="btn btn-default">Back
         to List</a>
     </p>
   </div>

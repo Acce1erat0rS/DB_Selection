@@ -78,11 +78,11 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
-    public String updateForm(@RequestParam("id") String id, TeacherForm form,
+    public String updateForm(@RequestParam("tid") String id, TeacherForm form,
             Model model) {
 
         Teacher teacher = teacherService.findOne(id);
-        beanMapper.map(teacher, form, "teacherExcludePassword");
+        form = beanMapper.map(teacher, form.getClass());
 
         model.addAttribute(teacher);
 
@@ -99,7 +99,7 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "update", params = "redo", method = RequestMethod.POST)
-    public String updateRedo(@RequestParam("id") String id, TeacherForm form,
+    public String updateRedo(@RequestParam("tid") String id, TeacherForm form,
             Model model) {
 
 
@@ -114,9 +114,9 @@ public class TeacherController {
             return "teacher/updateForm";
         }
 
-        Teacher teacher = teacherService.findOne(form.getTID());
-        beanMapper.map(form, teacher);
-
+        Teacher teacher = teacherService.findOne(form.getTid());
+        teacher = beanMapper.map(form, teacher.getClass());
+        teacherService.save(teacher);
 
         return "redirect:/teacher/update?complete";
     }
@@ -129,7 +129,7 @@ public class TeacherController {
     // delete flow
 
     @RequestMapping(value = "delete", params = "form", method = RequestMethod.GET)
-    public String deleteForm(@RequestParam("id") String id, TeacherForm form,
+    public String deleteForm(@RequestParam("tid") String id, TeacherForm form,
             Model model) {
 
         Teacher teacher = teacherService.findOne(id);
@@ -148,7 +148,7 @@ public class TeacherController {
             return "redirect:/teacher/list";
         }
 
-        Teacher teacher = teacherService.findOne(form.getTID());
+        Teacher teacher = teacherService.findOne(form.getTid());
         beanMapper.map(form, teacher);
 
         teacherService.delete(teacher);

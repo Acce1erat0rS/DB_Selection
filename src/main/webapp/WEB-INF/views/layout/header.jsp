@@ -53,11 +53,11 @@
 						</sec:authorize>
 						<sec:authorize ifAllGranted="ROLE_STU">
 							<%--指向学生个人信息管理--%>
-							<li><a href="#">个人信息管理</a></li>
+							<li><a href="#">学生信息管理</a></li>
 						</sec:authorize>
 						<sec:authorize ifAllGranted="ROLE_TEA">
 							<%--指向教师个人信息管理--%>
-							<li><a href="#">个人信息管理</a></li>
+							<li><a href="#">教师信息管理</a></li>
 						</sec:authorize>
 						<li><a href="#">查看信箱</a></li>
 						<li class="divider"></li>

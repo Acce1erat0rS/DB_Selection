@@ -44,7 +44,7 @@ ${request}
 						<td><form:form
 								action="${pageContext.request.contextPath}/student"
 								class="form-inline">
-							<input type="hidden" name="id" value="${f:h(student.SID)}" />
+							<input type="hidden" name="SID" value="${f:h(student.SID)}" />
 							<input type="submit" class="btn btn-default"
 								   name="redirectToUpdate" value="更新信息" />
 							<input type="submit" class="btn btn-danger"

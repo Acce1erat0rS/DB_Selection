@@ -18,29 +18,28 @@ public class Student {
     @Column(name = "ID", unique = true, nullable = true)
     private String ID;
 
-    @Column(name = "PID", unique = true, nullable = true)
+    @Column(name = "PID", unique = false, nullable = true)
     private String PID;
 
-    @Column(name = "MID", unique = true, nullable = true)
+    @Column(name = "MID", unique = false, nullable = true)
     private String MID;
 
-    @Column(name = "Name", unique = true, nullable = true)
+    @Column(name = "Name", unique = false, nullable = true)
     private String name;
 
     @Column(name = "Email", unique = true, nullable = true)
     private String email;
 
-    @Column(name = "Year", unique = true, nullable = true)
+    @Column(name = "Year", unique = false, nullable = true)
     private String year;
 
-    @Column(name = "Age", unique = true, nullable = true)
+    @Column(name = "Age", unique = false, nullable = true)
     private String age;
 
     @Column(name = "Tel", unique = true, nullable = true)
     private String tel;
 
-
-    @Column(name = "Class", unique = true, nullable = true)
+    @Column(name = "Class", unique = false, nullable = true)
     private String m_class;
 
     public String getSID() {
