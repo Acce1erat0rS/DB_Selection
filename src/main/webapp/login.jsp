@@ -24,7 +24,7 @@
     <nav class="head">
         <div class="left">
             <div class="course_name">
-                <span>数据挖掘</span>资源库
+                <span>毕业设计选题</span>资源库
             </div>
         </div>
 
@@ -62,7 +62,7 @@
             <%--如果已经登录--%>
                 <div style="margin-top: 80px; font-size: 16px">
                     <c:if test="${pageContext.request.userPrincipal.name != null}">
-                        <strong><sec:authentication property="name"/></strong>你好, 欢迎来到BJFU数据挖掘资源站.
+                        <strong><sec:authentication property="name"/></strong>你好, 欢迎来到BJFU毕业设计选题库.
                         <a href="<c:url value="/logout" />">Logout</a>
                     </c:if>
                 </div>
@@ -79,7 +79,7 @@
                 <div>
                     <img src="/static/img/tp3.png" width="65" height="65" />
                 </div>
-                <div class="block1text">课程介绍</div>
+                <div class="block1text">选题需知</div>
             </div>
         </a>
         <a href="info/outline">
@@ -95,7 +95,7 @@
                 <div>
                     <img src="/static/img/tp2.png" width="65" height="65" />
                 </div>
-                <div class="block3text">课程管理</div>
+                <div class="block3text">用户管理</div>
             </div>
         </a>
         <a href="info/cal">
@@ -124,7 +124,7 @@
 <footer class="footer">
     <div class="devider"></div>
     <div class="row">
-        Copyright (C) 第0军团 20017 All Rights Reserved | <a href="http://www.it.bjfu.edu.cn">北京林业大学信息学院</a>
+        Copyright (C) 第0军团 2017 All Rights Reserved | <a href="http://www.it.bjfu.edu.cn">北京林业大学信息学院</a>
     </div>
 </footer>
 

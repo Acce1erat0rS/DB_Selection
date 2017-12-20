@@ -34,7 +34,7 @@ ${request}
 		</thead>
 
 		<tbody>
-
+		<%--<sec:authorize ifAllGranted="ROLE_STU">--%>
 			<c:forEach var="student" items="${page.content}">
 					<tr>
 						<td>${f:h(student.SID)}</td>
@@ -51,8 +51,9 @@ ${request}
 								   name="redirectToDelete" value="删除" />
 						</form:form></td>
 					</tr>
-			</c:forEach>
 
+			</c:forEach>
+		<%--</sec:authorize>--%>
 		</tbody>
 	</table>
 	<util:pagination page="${page}" query="name=${f:h(param.name)}" />

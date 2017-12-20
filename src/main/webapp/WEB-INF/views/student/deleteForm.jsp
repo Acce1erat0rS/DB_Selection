@@ -1,13 +1,13 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div class="col-sm-12">
-	<form:form action="${pageContext.request.contextPath}/user/delete"
+	<form:form action="${pageContext.request.contextPath}/student/delete"
 		modelAttribute="studentForm" class="form-horizontal">
 		<fieldset>
 			<legend>Delete User</legend>
 			<div class="form-group">
 				<form:label path="name" class="col col-sm-2 control-label">User Name</form:label>
-				<div class="col col-sm-10">${f:h(userForm.SID)}</div>
+				<div class="col col-sm-10">${f:h(studentForm.SID)}</div>
 			</div>
 			<%--<div class="form-group">--%>
 				<%--<form:label path="email" class="col col-sm-2 control-label">E-mail</form:label>--%>
