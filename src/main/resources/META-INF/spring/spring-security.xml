@@ -16,6 +16,9 @@
                            access="permitAll" />
         <sec:intercept-url pattern="/**"
                            access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_STU','ROLE_TEA')"/>
+
+        <sec:form-login login-page="/login" login-processing-url="/login" always-use-default-target="true"
+                    default-target-url="student/list" authentication-failure-url="/login?error=error" />
     </sec:http>
 
     <sec:authentication-manager alias="authenticationManager">
