@@ -10,8 +10,8 @@ ${request}
 
 	<div class="well">
 
-		<form:form action="${pageContext.request.contextPath}/keypoint/search"
-			method="get" modelAttribute="keyPointSearchForm"
+		<form:form action="${pageContext.request.contextPath}/project/search"
+			method="get" modelAttribute="projectSearchForm"
 			class="form-inline my-inline">
 			<form:input path="name" class="form-control" placeholder="请输入问题关键词"/>
 			<input type="submit" value="搜索" class="btn btn-default"/>
@@ -19,7 +19,7 @@ ${request}
 
 		<br>
 		搜索不到？你可以选择
-		<a href="${pageContext.request.contextPath}/keypoint/create?form"
+		<a href="${pageContext.request.contextPath}/project/create?form"
 		   class="btn btn-primary">向老师提问</a><br> <br>
 	</div>
 
@@ -35,17 +35,17 @@ ${request}
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="keypoint" items="${page.content}">
+			<c:forEach var="project" items="${page.content}">
 				<tr>
-					<td># ${f:h(keypoint.id)}</td>
-					<td>${f:h(keypoint.name)}</td>
-					<td>${f:h(keypoint.agreed)}</td>
-					<td>${f:h(keypoint.solved)!=0}</td>
-					<td>${f:h(keypoint.createdAt)}</td>
+					<td># ${f:h(project.pid)}</td>
+					<td>${f:h(project.name)}</td>
+					<td>${f:h(project.chosennum)}</td>
+					<td>${f:h(project.description)!=0}</td>
+					<td>${f:h(project.createdAt)}</td>
 					<td><form:form
-						action="${pageContext.request.contextPath}/keypoint"
+						action="${pageContext.request.contextPath}/project"
 						class="form-inline">
-						<input type="hidden" name="id" value="${f:h(keypoint.id)}" />
+						<input type="hidden" name="pid" value="${f:h(project.pid)}" />
 						<input type="submit" class="btn btn-default"
 								name="add" value="我也有问题" />
 						<input type="submit" class="btn btn-default" value = "我来解答"/>
