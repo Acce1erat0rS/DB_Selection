@@ -2,6 +2,7 @@ package com.OriginLeague.mining.domain.repository.project;
 
 import com.OriginLeague.mining.domain.model.KeyPoint;
 import com.OriginLeague.mining.domain.model.Project;
+import org.hibernate.annotations.NamedQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +19,6 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
 //    @Query(value = "update project set ChoosenNum = ChoosenNum+1 where pid = :pid")
 //    void add(@Param("pid") String pid);
 
-    @Query(value = "select p from project p where p.TID=:TID")
-    Page<Project> findByOwner(@Param("TID") String pid,Pageable page);
+//    @Query(value = "select * from project p where p.PID=:PID",nativeQuery=true)
+//    Page<Project> findByProject_PID(@Param("PID") String pid,Pageable page);
 }
