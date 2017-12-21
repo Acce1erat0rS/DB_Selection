@@ -18,6 +18,67 @@
     <link href="static/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="static/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="static/css/loaders.css" rel="stylesheet" type="text/css" />
+    <script>
+        var canvasOne;
+        var ctx;
+        var audioContext;
+        var analyser;
+        var mic;
+
+        function init() {
+            canvasOne = document.getElementById('canvasOne');
+            ctx = canvasOne.getContext("2d");
+
+
+        }
+
+        navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
+
+        navigator.getMedia ( { audio: true }, function (stream) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext);
+            mic = audioContext.createMediaStreamSource(stream);
+            analyser= audioContext.createAnalyser();
+            analyser.fftSize = 256;
+            mic.connect(analyser);
+            drawSpectrum();
+        },function(){});
+
+
+
+        function drawSpectrum() {
+
+            var cwidth = canvasOne.width;
+            var cheight = canvasOne.height - 2;
+            var meterWidth = 3;//能量条的宽度
+            var gap = 1;//能量条的间距
+            var meterNum = cwidth / (meterWidth + gap);//计算当前画布上能画多少条
+            ctx = canvasOne.getContext('2d');
+            var capHeight = 2;//
+            var array = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(array);
+            var step = Math.round(array.length / meterNum);//计算从analyser中的采样步长
+
+            //清理画布
+            ctx.clearRect(0, 0, cwidth, cheight);
+            //定义一个渐变样式用于画图
+            var gradient = ctx.createLinearGradient(0, 0, 0, 100);
+            gradient.addColorStop(1,'#1f52a9');
+
+            gradient.addColorStop(0.5, '#691cac');
+            gradient.addColorStop(0, '#8f0743');
+
+            ctx.fillStyle = gradient;
+            //对信源数组进行抽样遍历，画出每个频谱条
+            for (var i = 0; i < meterNum; i++) {
+                var value = array[i]/3;
+                ctx.fillRect(i * (meterWidth+gap), cheight - value + capHeight,meterWidth, cheight);
+            }
+            requestAnimationFrame(drawSpectrum)
+        };
+    </script>
 </head>
 
 
@@ -28,15 +89,21 @@
     </Script>
 </c:if>
 
-<body onload='document.f.j_username.focus();'>
+<body onload='document.f.j_username.focus();init();'>
 <div class='login'>
     <div class='login_title'>
-        <span>管理员登录</span>
+        <span>
+            <img src='static/img/logo.jpg.png' width="100%">
+
+            <p style="font-family: 'Noto Sans S Chinese';font-size:15px;margin:20px 20px 0px 0px; text-align: center">本科毕业设计选题系统</p>
+            <p style="font-family: 'Noto Sans S Chinese';font-size:12px;margin-bottom:5px ">请登录</p>
+        </span>
     </div>
 
     <form name='f'
           action='${pageContext.request.contextPath}/j_spring_security_check'
-          method='POST'>
+          method='POST'
+    >
 
         <div class='login_fields'>
             <div class='login_fields__user'>
@@ -74,6 +141,10 @@
             <div class='login_fields__submit'>
                 <input name="submit" type='submit' value='登录'>
             </div>
+            <div class='login_fields_voicewave'>
+                <canvas id="canvasFormAudio" width="0" height="0"></canvas>
+                <canvas id="canvasOne" width=320 height=80% ></canvas>
+            </div>
         </div>
     </form>
 
@@ -101,6 +172,8 @@
 <script type="text/javascript" src="static/js/Particleground.js"></script>
 <script type="text/javascript" src="static/js/Treatment.js"></script>
 <script type="text/javascript" src="static/js/jquery.mockjax.js"></script>
+<script type="text/javascript" src='js/stopExecutionOnTimeout.js?t=1'></script>
+<%--<script type="text/javascript" src="layui/layui.js"></script>--%>
 <script type="text/javascript">
     var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
     var ajaxmockjax = 1;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
@@ -163,7 +236,6 @@
             }, 200);
         }
     });
-    var open = 0;
     layui.use('layer', function () {
         // var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
         var index = layer.alert(msgalert, { icon: 6, time: 4000, offset: 't', closeBtn: 0, title: '友情提示', btn: [], anim: 2, shade: 0 });
@@ -171,11 +243,81 @@
             color: '#777'
         });
         //非空验证
+        $('input[type="button"]').click(function () {
+            var login = $('input[name="login"]').val();
+            var pwd = $('input[name="pwd"]').val();
+            var code = $('input[name="code"]').val();
+            if (login == '') {
+                ErroAlert('请输入您的账号');
+            } else if (pwd == '') {
+                ErroAlert('请输入密码');
+            } else if (code == '' || code.length != 4) {
+                ErroAlert('输入验证码');
+            } else {
 
+                //登录
+                var JsonData = { login: login, pwd: pwd, code: code };
+                //此处做为ajax内部判断
+                var url = "";
+                if(JsonData.login == truelogin && JsonData.pwd == truepwd && JsonData.code.toUpperCase() == CodeVal.toUpperCase()){
+                    url = "Ajax/Login";
+                }else{
+                    url = "Ajax/LoginFalse";
+                }
+
+                AjaxPost(url, JsonData,
+                    function () {
+                        //ajax加载中
+                    },
+                    function (data) {
+                        //ajax返回
+                        //认证完成
+                        setTimeout(function () {
+                            $('.authent').show().animate({ right: 90 }, {
+                                easing: 'easeOutQuint',
+                                duration: 600,
+                                queue: false
+                            });
+                            $('.authent').animate({ opacity: 0 }, {
+                                duration: 200,
+                                queue: false
+                            }).addClass('visible');
+                            $('.login').removeClass('testtwo'); //平移特效
+                        }, 2000);
+                        setTimeout(function () {
+                            $('.authent').hide();
+                            $('.login').removeClass('test');
+                            if (data.Status == 'ok') {
+                                //登录成功
+                                $('.login div').fadeOut(100);
+                                $('.success').fadeIn(1000);
+                                $('.success').html(data.Text);
+                                //跳转操作
+
+                            } else {
+                                AjaxErro(data);
+                            }
+                        }, 2400);
+                    })
+            }
+        })
     })
-    var fullscreen = function () {
-
+    if(ajaxmockjax == 1){
+        $.mockjax({
+            url: 'Ajax/Login',
+            status: 200,
+            responseTime: 50,
+            responseText: {"Status":"ok","Text":"登录成功<br /><br />欢迎回来"}
+        });
+        $.mockjax({
+            url: 'Ajax/LoginFalse',
+            status: 200,
+            responseTime: 50,
+            responseText: {"Status":"Erro","Erro":"账号名或密码或验证码有误"}
+        });
     }
+
+
 
 </script>
 
