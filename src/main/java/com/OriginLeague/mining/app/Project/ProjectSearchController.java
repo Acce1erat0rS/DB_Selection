@@ -1,7 +1,7 @@
 package com.OriginLeague.mining.app.Project;
 
 import com.OriginLeague.mining.domain.model.Project;
-import com.OriginLeague.mining.domain.service.key.ProjectService;
+import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefaults;

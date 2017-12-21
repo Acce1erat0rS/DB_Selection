@@ -4,7 +4,7 @@ import com.OriginLeague.mining.app.Project.ProjectForm.ProjectCreateGroup;
 import com.OriginLeague.mining.app.Project.ProjectForm.ProjectDeleteGroup;
 import com.OriginLeague.mining.app.Project.ProjectForm.ProjectUpdateGroup;
 import com.OriginLeague.mining.domain.model.Project;
-import com.OriginLeague.mining.domain.service.key.ProjectService;
+import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package com.OriginLeague.mining.domain.service.key;
+package com.OriginLeague.mining.domain.service.project;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

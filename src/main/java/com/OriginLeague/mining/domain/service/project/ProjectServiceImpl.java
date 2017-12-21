@@ -8,7 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.OriginLeague.mining.domain.repository.project.ProjectRepository;
-import com.OriginLeague.mining.domain.service.key.ProjectService;
+import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
