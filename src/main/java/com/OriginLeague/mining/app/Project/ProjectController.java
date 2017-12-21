@@ -55,13 +55,13 @@ public class ProjectController {
     @RequestMapping(value = "show", method = RequestMethod.POST)
     public String showConfirm(@RequestParam("pid") String id, ProjectForm form,
                               Model model) {
-
-        Project project = projectService.findOne(id);
-        ProjectForm keyPointForm = new ProjectForm();
-        keyPointForm.setId(id);
-        keyPointForm.setDescription(project.getDescription());
-        keyPointForm.setName(project.getName());
-        model.addAttribute(project);
+//
+//        Project project = projectService.findOne(id);
+//        ProjectForm keyPointForm = new ProjectForm();
+//        keyPointForm.setId(id);
+//        keyPointForm.setDescription(project.getDescription());
+//        keyPointForm.setName(project.getName());
+//        model.addAttribute(project);
         return "project/show";
     }
 
@@ -98,7 +98,7 @@ public class ProjectController {
             Model model) {
 
         Project project = projectService.findOne(id);
-        beanMapper.map(project, form, "userExcludePassword");
+        form = beanMapper.map(project, form.getClass());
 
         model.addAttribute(project);
 
@@ -131,7 +131,7 @@ public class ProjectController {
             return "project/updateForm";
         }
 
-        Project project = projectService.findOne(form.getId());
+        Project project = projectService.findOne(form.getPid());
         beanMapper.map(form, project);
         projectService.save(project);
 
@@ -150,7 +150,7 @@ public class ProjectController {
             Model model) {
 
         Project project = projectService.findOne(id);
-        beanMapper.map(project, form);
+        form = beanMapper.map(project, form.getClass());
 
         model.addAttribute(project);
         return "project/deleteForm";
@@ -165,7 +165,7 @@ public class ProjectController {
             return "redirect:/project/list";
         }
 
-        Project project = projectService.findOne(form.getId());
+        Project project = projectService.findOne(form.getPid());
         beanMapper.map(form, project);
 
         projectService.delete(project);

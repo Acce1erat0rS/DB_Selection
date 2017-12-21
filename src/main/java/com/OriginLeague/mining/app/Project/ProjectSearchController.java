@@ -35,6 +35,14 @@ public class ProjectSearchController {
         return "project/list";
     }
 
+    @RequestMapping("mylist")
+    public String mylist(@PageableDefaults Pageable pageable, Model model) {
+//        pid = form.getTID;
+//        Page<Project> page = projectService.findByPID()
+//        model.addAttribute("page", page);
+        return "project/list";
+    }
+
     @RequestMapping("search")
     public String search(@Valid ProjectSearchForm form, BindingResult result,
                          @PageableDefaults Pageable pageable, Model model) {
@@ -50,7 +58,7 @@ public class ProjectSearchController {
     }
 
     @RequestMapping(params = "redirectToUpdate")
-    public String redirectToUpdateForm(@RequestParam("pid") Integer id,
+    public String redirectToUpdateForm(@RequestParam("pid") String id,
             RedirectAttributes attr) {
         attr.addAttribute("pid", id);
         return "redirect:/project/update?form";

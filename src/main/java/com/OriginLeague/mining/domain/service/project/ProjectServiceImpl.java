@@ -78,10 +78,15 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public Page<Project> findByNameLike(String name, Pageable pageable) {
         String query = name; // TODO escape
-//        Page<Project> page = projectRepository.findByNameLike(query, pageable);
+        Page<Project> page = projectRepository.findByNameLike(query, pageable);
+        return page;
+    }
 
-//        return page;
-        return null;
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Project> findByPID(String pid, Pageable pageable) {
+        Page<Project> page = projectRepository.findByProject_PID(pid, pageable);
+        return page;
     }
 
     @Override

@@ -12,13 +12,13 @@ import org.springframework.data.repository.query.Param;
 
 public interface ProjectRepository extends JpaRepository<Project, String> {
 
-//    @Query(value = "SELECT x FROM project x WHERE x.Name LIKE '%:Name%' ORDER BY x.id", countQuery = "SELECT COUNT(x) FROM project x WHERE x.Name LIKE :Name%")
-//    Page<Project> findByNameLike(@Param("name") String name, Pageable page);
+    @Query(value = "SELECT x FROM Project x WHERE x.name LIKE %:name% ORDER BY x.id", countQuery = "SELECT COUNT(x) FROM Project x WHERE x.name LIKE :name%")
+    Page<Project> findByNameLike(@Param("name") String name, Pageable page);
 
 //    @Modifying
 //    @Query(value = "update project set ChoosenNum = ChoosenNum+1 where pid = :pid")
 //    void add(@Param("pid") String pid);
 
-//    @Query(value = "select p from project p where p.PID=:PID",nativeQuery=true)
-//    Page<Project> findByProject_PID(@Param("PID") String pid,Pageable page);
+    @Query(value = "select p from Project p where p.pid=:pid")
+    Page<Project> findByProject_PID(@Param("pid") String pid,Pageable page);
 }
