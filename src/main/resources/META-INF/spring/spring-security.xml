@@ -38,6 +38,10 @@
                           password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
                           authorities="ROLE_TEA" />
 
+                <sec:user name="10010"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_TEA" />
+
                 <sec:user name="student"
                           password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
                           authorities="ROLE_STU" />

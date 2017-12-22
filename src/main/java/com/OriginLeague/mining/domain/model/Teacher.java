@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Teacher")
+
 public class Teacher {
     private static final long serialVersionUID = 1L;
 

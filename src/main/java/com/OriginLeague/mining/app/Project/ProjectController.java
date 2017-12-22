@@ -4,6 +4,7 @@ import com.OriginLeague.mining.app.Project.ProjectForm.ProjectCreateGroup;
 import com.OriginLeague.mining.app.Project.ProjectForm.ProjectDeleteGroup;
 import com.OriginLeague.mining.app.Project.ProjectForm.ProjectUpdateGroup;
 import com.OriginLeague.mining.domain.model.Project;
+//import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class ProjectController {
     @Inject
     protected Mapper beanMapper;
 
+//    @Inject
+//    protected FirstService firstService;
+
     @ModelAttribute
     public ProjectForm setUpProjectForm() {
         return new ProjectForm();
@@ -39,7 +43,9 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "create", params = "form", method = RequestMethod.GET)
-    public String createForm(ProjectForm form) {
+    public String createForm(ProjectForm form, Model model) {
+
+        model.addAttribute("major");
         return "project/createForm";
     }
 
@@ -91,6 +97,12 @@ public class ProjectController {
         return "project/createComplete";
     }
 
+
+//    @RequestMapping(value="firstchoice",method = RequestMethod.DELETE.GET)
+//    public String addToWishlist(){
+//
+//    }
+
     // update flow
 
     @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
@@ -99,7 +111,6 @@ public class ProjectController {
 
         Project project = projectService.findOne(id);
         form = beanMapper.map(project, form.getClass());
-
         model.addAttribute(project);
 
         return "project/updateForm";

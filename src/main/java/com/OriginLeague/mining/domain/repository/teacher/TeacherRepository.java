@@ -11,4 +11,7 @@ import org.springframework.data.repository.query.Param;
 public interface TeacherRepository extends JpaRepository<Teacher, String> {
     @Query(value = "SELECT x FROM Teacher x WHERE x.name LIKE :name% ORDER BY x.id", countQuery = "SELECT COUNT(x) FROM Teacher x WHERE x.name LIKE :name%")
     Page<Teacher> findByNameLike(@Param("name") String name, Pageable page);
+
+
+
 }

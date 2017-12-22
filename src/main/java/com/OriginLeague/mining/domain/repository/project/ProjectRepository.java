@@ -21,4 +21,7 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
 
     @Query(value = "select p from Project p where p.pid=:pid")
     Page<Project> findByProject_PID(@Param("pid") String pid,Pageable page);
+
+    @Query(value = "select p from Project p where p.tid=:tid")
+    Page<Project> findByProject_TID(@Param("tid") String tid,Pageable page);
 }

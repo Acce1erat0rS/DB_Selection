@@ -4,6 +4,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.io.Serializable;
+import java.util.Date;
 
 public class ProjectForm implements Serializable {
     /**
@@ -32,7 +33,7 @@ public class ProjectForm implements Serializable {
     @Null(groups = { ProjectCreateGroup.class })
     @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
     @Min(0)
-    private String id;
+    private String pid;
 
     // 重难点摘要
     @Null(groups = { ProjectDeleteGroup.class })
@@ -42,14 +43,33 @@ public class ProjectForm implements Serializable {
     @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
     private String description;
 
+    @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
+    private String type;
 
+    private Date createdAt;
 
-    public String getId() {
-        return id;
+    public String getType() {
+        return type;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public String getName() {

@@ -5,6 +5,8 @@ import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -37,10 +39,11 @@ public class ProjectSearchController {
 
     @RequestMapping("mylist")
     public String mylist(@PageableDefaults Pageable pageable, Model model) {
-//        pid = form.getTID;
-//        Page<Project> page = projectService.findByPID()
-//        model.addAttribute("page", page);
-        return "project/list";
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+        String name = userDetails.getUsername();
+        Page<Project> page = projectService.findByTID(name,pageable);
+        model.addAttribute("page", page);
+        return "project/mylist";
     }
 
     @RequestMapping("search")

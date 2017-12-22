@@ -20,4 +20,6 @@ public interface ProjectService {
     void delete(Project Project);
 
     Page<Project> findByPID(String PID,Pageable pageable);
+
+    Page<Project> findByTID(String TID,Pageable pageable);
 }

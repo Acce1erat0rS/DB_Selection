@@ -90,6 +90,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Page<Project> findByTID(String tid, Pageable pageable) {
+        Page<Project> page = projectRepository.findByProject_TID(tid, pageable);
+        return page;
+    }
+
+    @Override
     public void delete(Project project) {
         projectRepository.delete(project);
     }

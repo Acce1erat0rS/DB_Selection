@@ -13,14 +13,14 @@
 		<div class="collapse navbar-collapse" >
 			<ul class="nav navbar-nav">
 				<sec:authorize ifAllGranted="ROLE_ADMIN">
-					<li><a href="/user/list">学生用户管理</a></li>
-					<li><a href="/user/list">教师用户管理</a></li>
-					<li><a href="/user/list">学生选题结果查看</a></li>
+					<li><a href="/student/list">学生用户管理</a></li>
+					<li><a href="/teacher/list">教师用户管理</a></li>
+					<li><a href="/project/list">学生选题结果查看</a></li>
 				</sec:authorize>
 
 				<sec:authorize ifAllGranted="ROLE_TEA">
-					<li><a href="/user/list">题目查看</a></li>
-					<li><a href="/user/list">我的题目</a></li>
+					<li><a href="/project/list">题目查看</a></li>
+					<li><a href="/project/list">我的题目</a></li>
 					<li><a href="/user/list">我的文件</a></li>
 				</sec:authorize>
 

@@ -22,9 +22,11 @@ import javax.persistence.Version;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "project" )
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Project implements Serializable {
 
     /**
@@ -33,7 +35,8 @@ public class Project implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "PID", unique = true, nullable = false)
+    @GeneratedValue(generator = "jpa-uuid")
+    @Column(name = "PID", unique = true, nullable = false,length = 32)
     private String pid;
 
     @Column(name = "TID",unique = false, nullable = true)

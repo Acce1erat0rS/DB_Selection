@@ -172,7 +172,7 @@
 <script type="text/javascript" src="static/js/Particleground.js"></script>
 <script type="text/javascript" src="static/js/Treatment.js"></script>
 <script type="text/javascript" src="static/js/jquery.mockjax.js"></script>
-<script type="text/javascript" src='js/stopExecutionOnTimeout.js?t=1'></script>
+<%--<script type="text/javascript" src='js/stopExecutionOnTimeout.js?t=1'></script>--%>
 <%--<script type="text/javascript" src="layui/layui.js"></script>--%>
 <script type="text/javascript">
     var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持

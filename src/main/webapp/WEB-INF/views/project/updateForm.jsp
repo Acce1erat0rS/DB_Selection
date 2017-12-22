@@ -12,21 +12,37 @@
 			<div class="form-group">
 				<form:label path="name" class="col col-sm-2 control-label">项目创建日期</form:label>
 				<div class="col col-sm-10">
-						${f:h(projectForm.createdAt.toLocaleString())}
+						${f:h(project.createdAt)}
 				</div>
 			</div>
 			<div class="form-group">
 				<form:label path="name" class="col col-sm-2 control-label">项目名称</form:label>
 				<div class="col col-sm-10">
-					<form:input path="name" class="form-control" />
+					<form:input path="name" class="form-control" value="${f:h(project.name)}"/>
 					<form:errors path="name" cssClass="text-danger" />
 				</div>
 			</div>
 			<div class="form-group">
 				<form:label path="description" class="col col-sm-2 control-label">项目描述</form:label>
 				<div class="col col-sm-10">
-					<form:input path="description" class="form-control" />
+					<form:textarea rows="8" path="description" class="form-control"  value="${f:h(project.description)}"/>
+
 					<form:errors path="description" cssClass="text-danger" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<form:label path="type" class="col col-sm-2 control-label">课题类别</form:label>
+				<div class="col col-sm-10">
+					<c:if test="${f:h(project.type)=='论文类'}">
+						<form:radiobutton path="type" value="实践类" />实践类
+						<form:radiobutton path="type" value="论文类" checked="true"/>论文类
+					</c:if>
+
+					<c:if test="${f:h(project.type)=='实践类'}">
+						<form:radiobutton path="type" value="实践类" checked="true"/>实践类
+						<form:radiobutton path="type" value="论文类" />论文类
+					</c:if>
 				</div>
 			</div>
 
