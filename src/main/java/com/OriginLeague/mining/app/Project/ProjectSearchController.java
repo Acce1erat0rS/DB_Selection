@@ -1,6 +1,7 @@
 package com.OriginLeague.mining.app.Project;
 
 import com.OriginLeague.mining.domain.model.Project;
+import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,6 +26,9 @@ import javax.validation.Valid;
 public class ProjectSearchController {
     @Inject
     protected ProjectService projectService;
+
+    @Inject
+    protected FirstService firstService;
 
     @ModelAttribute
     public ProjectSearchForm setUpForm() {
@@ -62,16 +67,35 @@ public class ProjectSearchController {
 
     @RequestMapping(params = "redirectToUpdate")
     public String redirectToUpdateForm(@RequestParam("pid") String id,
-            RedirectAttributes attr) {
+                                       RedirectAttributes attr) {
         attr.addAttribute("pid", id);
         return "redirect:/project/update?form";
     }
 
     @RequestMapping(params = "redirectToDelete")
-    public String redirectToDeleteForm(@RequestParam("pid") Integer id,
-            RedirectAttributes attr) {
+    public String redirectToDeleteForm(@RequestParam("pid") String id,
+                                       RedirectAttributes attr) {
         attr.addAttribute("pid", id);
         return "redirect:/project/delete?form";
+    }
+
+//    @RequestMapping(params = "redirectToChose")
+//    public String redirectToChoseForm(@RequestParam("pid") String id,
+//                                       RedirectAttributes attr) {
+//        attr.addAttribute("pid", id);
+//        return "redirect:/project/delete?form";
+//    }
+
+    @RequestMapping(params="redirectToChose")
+    public String addToWishlist(@RequestParam("pid") String id,ProjectForm form,
+                                Model model){
+
+        String a =" a";
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+        String SID = userDetails.getUsername();
+        firstService.add(id,SID);
+
+        return "project/choseComplete";
     }
 
     @RequestMapping(params = "add")

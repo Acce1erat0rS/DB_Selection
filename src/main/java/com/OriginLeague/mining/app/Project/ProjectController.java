@@ -5,6 +5,7 @@ import com.OriginLeague.mining.app.Project.ProjectForm.ProjectDeleteGroup;
 import com.OriginLeague.mining.app.Project.ProjectForm.ProjectUpdateGroup;
 import com.OriginLeague.mining.domain.model.Project;
 //import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
+import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class ProjectController {
     @Inject
     protected Mapper beanMapper;
 
+    @Inject
+    protected FirstService firstService;
+
 //    @Inject
 //    protected FirstService firstService;
 
@@ -51,7 +55,7 @@ public class ProjectController {
 
     @RequestMapping(value = "create", params = "confirm", method = RequestMethod.POST)
     public String createConfirm(@Validated({ Default.class, ProjectCreateGroup.class })
-                                ProjectForm form, BindingResult result) {
+                                        ProjectForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "project/createForm";
         }
@@ -77,6 +81,16 @@ public class ProjectController {
         return "project/createForm";
     }
 
+    @RequestMapping(value = "slist")
+    public String studentList(ProjectForm form) {
+        return "project/s_list";
+    }
+
+    @RequestMapping(value = "smylist")
+    public String smyist(ProjectForm form) {
+        return "project/s_mylist";
+    }
+
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(
             @Validated({ Default.class, ProjectCreateGroup.class }) ProjectForm form,
@@ -98,16 +112,19 @@ public class ProjectController {
     }
 
 
-//    @RequestMapping(value="firstchoice",method = RequestMethod.DELETE.GET)
-//    public String addToWishlist(){
+//    @RequestMapping(value="redirectToChose",method = RequestMethod.GET)
+//    public String addToWishlist(@RequestParam("pid") String id,ProjectForm form,
+//                                Model model){
 //
+//
+//        return "project/list";
 //    }
 
     // update flow
 
     @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
     public String updateForm(@RequestParam("pid") String id, ProjectForm form,
-            Model model) {
+                             Model model) {
 
         Project project = projectService.findOne(id);
         form = beanMapper.map(project, form.getClass());
@@ -127,7 +144,7 @@ public class ProjectController {
 
     @RequestMapping(value = "update", params = "redo", method = RequestMethod.POST)
     public String updateRedo(@RequestParam("pid") String id, ProjectForm form,
-            Model model) {
+                             Model model) {
 
         // reset password
 
@@ -158,7 +175,7 @@ public class ProjectController {
 
     @RequestMapping(value = "delete", params = "form", method = RequestMethod.GET)
     public String deleteForm(@RequestParam("pid") String id, ProjectForm form,
-            Model model) {
+                             Model model) {
 
         Project project = projectService.findOne(id);
         form = beanMapper.map(project, form.getClass());

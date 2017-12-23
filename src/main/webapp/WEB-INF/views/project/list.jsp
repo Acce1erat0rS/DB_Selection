@@ -12,8 +12,8 @@ ${request}
 	<div class="well">
 
 		<form:form action="${pageContext.request.contextPath}/project/search"
-			method="get" modelAttribute="projectSearchForm"
-			class="form-inline my-inline">
+				   method="get" modelAttribute="projectSearchForm"
+				   class="form-inline my-inline">
 			<form:input path="name" class="form-control" placeholder="请输入问题关键词"/>
 			<input type="submit" value="搜索" class="btn btn-default"/>
 		</form:form>
@@ -26,37 +26,31 @@ ${request}
 
 	<table class="table table-striped table-bordered table-condensed">
 		<thead>
-			<tr>
-				<th>课题编号</th>
-				<th>课题名称</th>
-				<th>已选人数</th>
-				<th>创建时间</th>
-				<th>可做操作</th>
-			</tr>
+		<tr>
+			<th>课题编号</th>
+			<th>课题名称</th>
+			<th>已选人数</th>
+			<th>创建时间</th>
+			<th>可做操作</th>
+		</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="project" items="${page.content}">
-				<tr>
-					<td># ${f:h(project.pid)}</td>
-					<td>${f:h(project.name)}</td>
-					<td>${f:h(project.chosennum)}</td>
-					<td>${f:h(project.createdAt)}</td>
-					<td><form:form
+		<c:forEach var="project" items="${page.content}">
+			<tr>
+				<td># ${f:h(project.pid)}</td>
+				<td>${f:h(project.name)}</td>
+				<td>${f:h(project.chosennum)}</td>
+				<td>${f:h(project.createdAt)}</td>
+				<td><form:form
 						action="${pageContext.request.contextPath}/project"
 						class="form-inline">
-
-
-						<input type="hidden" name="pid" value="${f:h(project.pid)}" />
-						<input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
-						<input type="submit" class="btn btn-primary"
-							   name="redirectToChoose" value="选择该题" />
-						<input type="submit" class="btn btn-default"
-							   name="redirectToUpdate" value="更新信息" />
-						<input type="submit" class="btn btn-danger"
-								name="redirectToDelete" value="删除" />
-					</form:form></td>
-				</tr>
-			</c:forEach>
+					<input type="hidden" name="pid" value="${f:h(project.pid)}" />
+					<input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
+					<input type="submit" class="btn btn-default"
+						   name="redirectToUpdate" value="更新信息" />
+				</form:form></td>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 

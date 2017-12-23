@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.OriginLeague.mining.domain.repository.firstchoice.FirstRepository;
 import com.OriginLeague.mining.domain.repository.project.ProjectRepository;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
 import org.joda.time.DateTime;
@@ -30,6 +31,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Inject
     protected PasswordEncoder passwordEncoder;
+
+//    @Inject
+//    protected FirstRepository firstRepository;
 
     @Override
     public void save(Project project) {

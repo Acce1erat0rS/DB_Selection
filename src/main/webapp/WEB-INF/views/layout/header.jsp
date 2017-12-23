@@ -25,9 +25,8 @@
 				</sec:authorize>
 
 				<sec:authorize ifAllGranted="ROLE_STU">
-					<li><a href="/user/list">查看选题</a></li>
-					<li><a href="/user/list">我的题目</a></li>
-					<li class="dropdown">
+					<li><a href="/project/slist">查看选题</a></li>
+					<li><a href="/project/smylist">我的题目</a></li>					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							学习资源<b class="caret"></b>
 						</a>

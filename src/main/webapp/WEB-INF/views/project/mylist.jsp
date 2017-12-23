@@ -48,8 +48,6 @@ ${request}
 
 						<input type="hidden" name="pid" value="${f:h(project.pid)}" />
 						<input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
-						<input type="submit" class="btn btn-primary"
-							   name="redirectToChoose" value="选择该题" />
 						<input type="submit" class="btn btn-default"
 							   name="redirectToUpdate" value="更新信息" />
 						<input type="submit" class="btn btn-danger"
