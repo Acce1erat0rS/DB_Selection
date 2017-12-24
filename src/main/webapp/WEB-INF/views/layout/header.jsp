@@ -20,8 +20,8 @@
 
 				<sec:authorize ifAllGranted="ROLE_TEA">
 					<li><a href="/project/list">题目查看</a></li>
-					<li><a href="/project/list">我的题目</a></li>
-					<li><a href="/user/list">我的文件</a></li>
+					<li><a href="/project/mylist">我的题目</a></li>
+					<li><a href="/file/list">我的文件</a></li>
 				</sec:authorize>
 
 				<sec:authorize ifAllGranted="ROLE_STU">

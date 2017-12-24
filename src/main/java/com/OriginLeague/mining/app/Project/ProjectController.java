@@ -7,7 +7,13 @@ import com.OriginLeague.mining.domain.model.Project;
 //import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
+import com.OriginLeague.mining.domain.service.student.StudentService;
+import com.OriginLeague.mining.domain.service.teacher.TeacherService;
 import org.dozer.Mapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +38,11 @@ public class ProjectController {
 
     @Inject
     protected FirstService firstService;
+
+    @Inject
+    protected TeacherService teacherService;
+    @Inject
+    protected StudentService studentService;
 
 //    @Inject
 //    protected FirstService firstService;
@@ -62,19 +73,29 @@ public class ProjectController {
         return "project/createConfirm";
     }
 
-    @RequestMapping(value = "show", method = RequestMethod.POST)
+    @RequestMapping(params = "show", method = RequestMethod.POST)
     public String showConfirm(@RequestParam("pid") String id, ProjectForm form,
                               Model model) {
-//
-//        Project project = projectService.findOne(id);
-//        ProjectForm keyPointForm = new ProjectForm();
-//        keyPointForm.setId(id);
-//        keyPointForm.setDescription(project.getDescription());
-//        keyPointForm.setName(project.getName());
-//        model.addAttribute(project);
+        Project project = projectService.findOne(id);
+        ProjectForm keyPointForm = new ProjectForm();
+        keyPointForm.setDescription(project.getDescription());
+        keyPointForm.setName(project.getName());
+        project.setTid(teacherService.findOne(project.getTid()).getName());
+        model.addAttribute(project);
         return "project/show";
     }
 
+    @RequestMapping(params = "sshow", method = RequestMethod.POST)
+    public String showSProject(@RequestParam("pid") String id, ProjectForm form,
+                              Model model) {
+
+        Project project = projectService.findOne(id);
+        ProjectForm keyPointForm = new ProjectForm();
+        keyPointForm.setDescription(project.getDescription());
+        keyPointForm.setName(project.getName());
+        model.addAttribute(project);
+        return "project/show";
+    }
 
     @RequestMapping(value = "create", params = "redo", method = RequestMethod.POST)
     public String createRedo(ProjectForm form) {
@@ -82,12 +103,18 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "slist")
-    public String studentList(ProjectForm form) {
+    public String studentList(ProjectForm form, Pageable pageable, Model model) {
+        Page<Project> page = projectService.findAll(pageable);
+        model.addAttribute("page", page);
         return "project/s_list";
     }
 
     @RequestMapping(value = "smylist")
-    public String smyist(ProjectForm form) {
+    public String smyist(ProjectForm form, Pageable pageable, Model model) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+        String name = userDetails.getUsername();
+        Page<Project> page = projectService.findBySID(name,pageable);
+        model.addAttribute("page", page);
         return "project/s_mylist";
     }
 
@@ -99,8 +126,12 @@ public class ProjectController {
             return "project/createForm";
         }
         Project project = beanMapper.map(form, Project.class);
-
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+        String TID = userDetails.getUsername();
+        String major = teacherService.findOne(TID).getMid();
         project.setChosennum(1);
+        project.setTid(TID);
+        project.setMid(major);
         projectService.save(project);
 
         return "redirect:/project/create?complete";
@@ -111,14 +142,6 @@ public class ProjectController {
         return "project/createComplete";
     }
 
-
-//    @RequestMapping(value="redirectToChose",method = RequestMethod.GET)
-//    public String addToWishlist(@RequestParam("pid") String id,ProjectForm form,
-//                                Model model){
-//
-//
-//        return "project/list";
-//    }
 
     // update flow
 

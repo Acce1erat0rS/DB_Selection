@@ -101,8 +101,22 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Page<Project> findBySID(String sid, Pageable pageable) {
+        Page<Project> page = projectRepository.findByProject_SID(sid, pageable);
+        return page;
+    }
+
+    @Override
     public void delete(Project project) {
         projectRepository.delete(project);
     }
+
+    @Override
+    public void finalize(String pid,String sid){
+        Project project = projectRepository.findOne(pid);
+        projectRepository.finalUpdate(pid,sid);
+    }
+
 
 }

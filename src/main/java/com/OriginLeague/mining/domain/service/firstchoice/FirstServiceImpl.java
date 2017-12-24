@@ -47,16 +47,16 @@ public class FirstServiceImpl implements FirstService {
     @Transactional()
     public void add(String pid,String sid){
         firstchoice fc = firstRepository.findfirstchoiceBySP(sid,pid);
-//        if (fc == null) {
-//            throw new ResourceNotFoundException("firstchoice [id=" + pid
-//                    + "] is not found.");
-//        }
+        if (fc != null) {
+            throw new ResourceNotFoundException("firstchoice [id=" + pid
+                    + "] is not found.");
+        }
         fc = new firstchoice();
         Date now = new DateTime().toDate();
         fc.setPID(pid);
         fc.setSID(sid);
         fc.setLogtime(now);
-        firstRepository.save(fc);
+        firstRepository.addChoose(sid,pid,now);
     }
 
     @Override
@@ -70,5 +70,18 @@ public class FirstServiceImpl implements FirstService {
     public void delete(firstchoice fc) {
         firstRepository.delete(fc);
     }
+
+    @Override
+    public Page<firstchoice> findByPID(String pid,Pageable pageable){
+        Page<firstchoice> page = firstRepository.findpjByPID(pid,pageable);
+        return page;
+    };
+
+    @Override
+    public void finalize(String pid,String sid){
+        firstRepository.finalChosebyPID(pid);
+        firstRepository.finalChosebySID(sid);
+    }
+
 
 }

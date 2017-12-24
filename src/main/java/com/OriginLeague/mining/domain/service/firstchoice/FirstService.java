@@ -14,6 +14,10 @@ public interface FirstService {
 
     void add(String pid,String sid);
 
+    Page<firstchoice> findByPID(String pid,Pageable pageable);
+
     void delete(firstchoice firstchoice);
+
+    void finalize(String pid,String sid);
 
 }

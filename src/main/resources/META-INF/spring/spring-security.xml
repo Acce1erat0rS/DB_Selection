@@ -46,6 +46,9 @@
                           password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
                           authorities="ROLE_STU" />
 
+                <sec:user name="151002110"
+                          password="$2a$10$oxSJl.keBwxmsMLkcT9lPeAIxfNTPNQxpeywMrF7A3kVszwUTqfTK"
+                          authorities="ROLE_STU" />
             </sec:user-service>
 
             <!--<jdbc-user-service data-source-ref="dataSource"-->

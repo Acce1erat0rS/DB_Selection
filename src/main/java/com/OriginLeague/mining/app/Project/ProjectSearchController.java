@@ -1,10 +1,15 @@
 package com.OriginLeague.mining.app.Project;
 
 import com.OriginLeague.mining.domain.model.Project;
+import com.OriginLeague.mining.domain.model.Student;
+import com.OriginLeague.mining.domain.model.firstchoice;
+import com.OriginLeague.mining.domain.model.subs;
 import com.OriginLeague.mining.domain.service.firstchoice.FirstService;
 import com.OriginLeague.mining.domain.service.project.ProjectService;
+import com.OriginLeague.mining.domain.service.student.StudentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefaults;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Controller
 @RequestMapping("project")
@@ -29,6 +37,9 @@ public class ProjectSearchController {
 
     @Inject
     protected FirstService firstService;
+
+    @Inject
+    protected StudentService studentService;
 
     @ModelAttribute
     public ProjectSearchForm setUpForm() {
@@ -96,6 +107,38 @@ public class ProjectSearchController {
         firstService.add(id,SID);
 
         return "project/choseComplete";
+    }
+
+    @RequestMapping(params="redirectToTeacherChose")
+    public String showPlist(@RequestParam("pid") String id,ProjectForm form,
+                                Model model,Pageable pageable){
+        Page<firstchoice> page =  firstService.findByPID(id,pageable);
+        ArrayList<subs> sublist = new ArrayList<>();
+
+        for(firstchoice fc:page){
+            subs s = new subs();
+            String SID = fc.getSID();
+            Student student = studentService.findOne(SID);
+            s.setPID(fc.getPID());
+            s.setLogtime(fc.getLogtime());
+            s.setSEmail(student.getEmail());
+            s.setSN(student.getName());
+            s.setSID(student.getSID());
+            sublist.add(s);
+//            fc.setSID(student.getName());
+        }
+        model.addAttribute("subs",page);
+        model.addAttribute("subslist",sublist);
+        return "project/subs";
+    }
+
+
+    @RequestMapping(params="finalize")
+    public String FinalChoose(@RequestParam("pid") String id,@RequestParam("sid") String sid, Model mode,RedirectAttributes attr){
+        projectService.finalize(id,sid);
+        firstService.finalize(id,sid);
+        studentService.finalize(sid,id);
+        return "project/finalComplete";
     }
 
     @RequestMapping(params = "add")

@@ -10,14 +10,12 @@ ${request}
 	</c:if>
 
 	<div class="well">
-
 		<form:form action="${pageContext.request.contextPath}/project/search"
 			method="get" modelAttribute="projectSearchForm"
 			class="form-inline my-inline">
 			<form:input path="name" class="form-control" placeholder="请输入问题关键词"/>
 			<input type="submit" value="搜索" class="btn btn-default"/>
 		</form:form>
-
 		<br>
 		搜索不到？你可以选择
 		<a href="${pageContext.request.contextPath}/project/create?form"
@@ -50,8 +48,11 @@ ${request}
 						<input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
 						<input type="submit" class="btn btn-default"
 							   name="redirectToUpdate" value="更新信息" />
+						<input type="submit" class="btn btn-primary"
+							   name="redirectToTeacherChose" value="查看候选学生" />
 						<input type="submit" class="btn btn-danger"
 								name="redirectToDelete" value="删除" />
+
 					</form:form></td>
 				</tr>
 			</c:forEach>

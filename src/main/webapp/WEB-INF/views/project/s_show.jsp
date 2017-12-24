@@ -1,5 +1,12 @@
 <%--
   Created by IntelliJ IDEA.
+  User: 天禹
+  Date: 2017/12/23
+  Time: 14:30
+  To change this template use File | Settings | File Templates.
+--%>
+<%--
+  Created by IntelliJ IDEA.
   User: sp1ca
   Date: 15/12/2017
   Time: 9:16 AM
@@ -53,7 +60,7 @@
 
             <div class="form-group">
                 <div class="col col-sm-10 col-sm-offset-2">
-                    <input type="submit" class="btn btn-default" name="project/list" value="返回" />
+                    <input type="submit" class="btn btn-default" name="project/slist" value="返回" />
                 </div>
             </div>
         </fieldset>

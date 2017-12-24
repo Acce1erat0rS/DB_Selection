@@ -22,4 +22,8 @@ public interface ProjectService {
     Page<Project> findByPID(String PID,Pageable pageable);
 
     Page<Project> findByTID(String TID,Pageable pageable);
+
+    Page<Project> findBySID(String SID,Pageable pageable);
+
+    void finalize(String pid,String sid);
 }

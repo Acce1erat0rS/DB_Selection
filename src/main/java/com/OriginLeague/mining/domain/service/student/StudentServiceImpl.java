@@ -59,4 +59,9 @@ public class StudentServiceImpl implements StudentService{
         studentRepository.delete(student);
     }
 
+    @Override
+    public void finalize(String sid,String pid){
+        studentRepository.finalize(pid,sid);
+    }
+
 }

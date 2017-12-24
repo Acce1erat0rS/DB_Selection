@@ -14,4 +14,6 @@ public interface StudentService {
     Page<Student> findByNameLike(String name, Pageable pageable);
 
     void delete(Student student);
+
+    void finalize(String sid,String pid);
 }
