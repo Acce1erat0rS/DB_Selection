@@ -53,7 +53,7 @@ body {
         <div class="row">
             <div class="col-lg-12">
                 <p style="text-align: center; background: #e5eCf9;">Copyright
-                    &copy; 2017 Origin League, All Right Reserved <br>
+                    &copy; 2017 Enterprise co. Ltd.  All Right Reserved <br>
                     ICP: <<a href="www.miitbeian.gov.cn">京ICP备17059571号</a>>
                 </p>
             </div>

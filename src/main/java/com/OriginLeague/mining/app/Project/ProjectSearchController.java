@@ -46,6 +46,13 @@ public class ProjectSearchController {
         return new ProjectSearchForm();
     }
 
+    @RequestMapping(params = "list")
+    public  String redirectToList(@PageableDefaults Pageable pageable, Model model){
+        Page<Project> page = projectService.findAll(pageable);
+        model.addAttribute("page", page);
+        return "project/list";
+    }
+
     @RequestMapping("list")
     public String list(@PageableDefaults Pageable pageable, Model model) {
         Page<Project> page = projectService.findAll(pageable);
@@ -101,7 +108,6 @@ public class ProjectSearchController {
     public String addToWishlist(@RequestParam("pid") String id,ProjectForm form,
                                 Model model){
 
-        String a =" a";
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
         String SID = userDetails.getUsername();
         firstService.add(id,SID);

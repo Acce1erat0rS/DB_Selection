@@ -26,7 +26,6 @@
 				<form:label path="description" class="col col-sm-2 control-label">项目描述</form:label>
 				<div class="col col-sm-10">
 					<form:textarea rows="8" path="description" class="form-control"  value="${f:h(project.description)}"/>
-
 					<form:errors path="description" cssClass="text-danger" />
 				</div>
 			</div>
@@ -51,9 +50,10 @@
 				<div class="col col-sm-10 col-sm-offset-2">
 					<%--<form:hidden path="version" />--%>
 					<%--<form:errors path="version" cssClass="text-danger" />--%>
-					<input type="submit" class="btn btn-primary" name="confirm"
-						value="Confirm" /> <input type="submit" class="btn btn-default"
-						name="redirectToList" value="Back to List" />
+						<input type="hidden" name="pid" value="${f:h(project.pid)}" />
+						<input type="hidden" name="createdAt" value="${f:h(project.createdAt)}" />
+					<input type="submit" class="btn btn-primary" name="confirm" value="Confirm" />
+					<input type="submit" class="btn btn-default" name="redirectToList" value="返回列表" />
 				</div>
 			</div>
 		</fieldset>

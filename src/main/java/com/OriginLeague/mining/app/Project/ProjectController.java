@@ -41,6 +41,7 @@ public class ProjectController {
 
     @Inject
     protected TeacherService teacherService;
+
     @Inject
     protected StudentService studentService;
 
@@ -50,11 +51,6 @@ public class ProjectController {
     @ModelAttribute
     public ProjectForm setUpProjectForm() {
         return new ProjectForm();
-    }
-
-    @RequestMapping("/project/greeting")
-    public String greeting(@RequestParam(value="name", required=false) String name, Model model) {
-        return "ppts/list";
     }
 
     @RequestMapping(value = "create", params = "form", method = RequestMethod.GET)
