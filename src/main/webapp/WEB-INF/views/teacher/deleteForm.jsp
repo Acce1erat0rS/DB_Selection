@@ -2,37 +2,37 @@
 
 <div class="col-sm-12">
 	<form:form action="${pageContext.request.contextPath}/teacher/delete"
-		modelAttribute="teacherForm" class="form-horizontal">
+			   modelAttribute="teacherForm" class="form-horizontal">
 		<fieldset>
-			<legend>Delete User</legend>
+			<legend>删除教师用户</legend>
 			<div class="form-group">
-				<form:label path="name" class="col col-sm-2 control-label">User Name</form:label>
+				<form:label path="name" class="col col-sm-2 control-label">用户名</form:label>
 				<div class="col col-sm-10">${f:h(teacherForm.name)}</div>
 			</div>
 			<div class="form-group">
-				<form:label path="tid" class="col col-sm-2 control-label">TID</form:label>
+				<form:label path="tid" class="col col-sm-2 control-label">教师工号</form:label>
 				<div class="col col-sm-10">${f:h(teacherForm.tid)}</div>
 			</div>
 
 			<div class="form-group">
-				<form:label path="profession" class="col col-sm-2 control-label">Prof</form:label>
+				<form:label path="profession" class="col col-sm-2 control-label">职称</form:label>
 				<div class="col col-sm-10">${f:h(teacherForm.profession)}</div>
 			</div>
-			<%--<div class="form-group">--%>
-				<%--<form:label path="birth" class="col col-sm-2 control-label">User Birth</form:label>--%>
-				<%--<div class="col col-sm-10">--%>
-					<%--<fmt:formatDate pattern="yyyy-MM-dd" value="${userForm.birth}" />--%>
-				<%--</div>--%>
-			<%--</div>--%>
-			<%--<div class="form-group">--%>
+			<div class="form-group">
+				<form:label path="mid" class="col col-sm-2 control-label">专业号</form:label>
+				<div class="col col-sm-10">
+						${teacherForm.mid}
+				</div>
+			</div>
+				<%--<div class="form-group">--%>
 				<%--<form:label path="password" class="col col-sm-2 control-label">User Password</form:label>--%>
 				<%--<div class="col col-sm-10">******</div>--%>
-			<%--</div>--%>
-			<%--<div class="form-group">--%>
+				<%--</div>--%>
+				<%--<div class="form-group">--%>
 				<%--<form:label path="confirmPassword"--%>
-					<%--class="col col-sm-2 control-label">User Password (confirm)</form:label>--%>
+				<%--class="col col-sm-2 control-label">User Password (confirm)</form:label>--%>
 				<%--<div class="col col-sm-10">******</div>--%>
-			<%--</div>--%>
+				<%--</div>--%>
 			<div class="form-group">
 				<div class="col col-sm-10 col-sm-offset-2">
 

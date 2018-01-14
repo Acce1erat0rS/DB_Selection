@@ -14,4 +14,6 @@ public interface TeacherService {
     Page<Teacher> findByNameLike(String name, Pageable pageable);
 
     void delete(Teacher teacher);
+
+    void upsave(Teacher teacher);
 }

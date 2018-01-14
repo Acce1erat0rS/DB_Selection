@@ -35,30 +35,20 @@ public class TeacherForm implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    @Null(groups = {TeacherCreateGroup.class })
     @NotNull(groups = { TeacherUpdateGroup.class, TeacherDeleteGroup.class })
     @Min(0)
-    String tid="";
+    String tid;
 
-    @Null(groups = {TeacherDeleteGroup.class })
-    @NotNull(groups = {TeacherUpdateGroup.class,TeacherCreateGroup.class })
-    @Size(min = 1, max = 20)
-    private String name="";
+    String mid;
 
-    @Null(groups = { TeacherDeleteGroup.class })
-    @NotNull(groups = { TeacherUpdateGroup.class, TeacherCreateGroup.class })
-    @Size(min = 1, max = 50)
+    private String name;
+
     @Email
-    private String email="";
+    private String email;
 
-    @Null(groups = {TeacherDeleteGroup.class })
-    @NotNull(groups = {TeacherUpdateGroup.class,TeacherCreateGroup.class })
-    @Size(min = 1, max = 15)
-    private String tel="";
+    private String tel;
 
-    @Null(groups = {TeacherCreateGroup.class })
-    @NotNull(groups = { TeacherUpdateGroup.class, TeacherDeleteGroup.class })
-    private String profession="";
+    private String profession;
 
     public String getTid() {
         return tid;
@@ -98,5 +88,13 @@ public class TeacherForm implements Serializable {
 
     public void setProfession(String profession) {
         this.profession = profession;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
     }
 }

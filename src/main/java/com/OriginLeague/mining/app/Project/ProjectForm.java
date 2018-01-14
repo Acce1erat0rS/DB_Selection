@@ -30,39 +30,24 @@ public class ProjectForm implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    @Null(groups = { ProjectCreateGroup.class })
     @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
-    @Min(0)
     private String pid;
 
-    // 重难点摘要
-    @Null(groups = { ProjectDeleteGroup.class })
-    @NotNull(groups = { ProjectUpdateGroup.class, ProjectCreateGroup.class })
+    private String tid;
+
+    private String mid;
+
+    private String sid;
+
     private String name;
 
-    @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
     private String description;
 
-    @NotNull(groups = { ProjectUpdateGroup.class, ProjectDeleteGroup.class })
     private String type;
 
-    private Date createdAt;
+    private Date date;
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+    private int chosennum;
 
     public String getPid() {
         return pid;
@@ -70,6 +55,30 @@ public class ProjectForm implements Serializable {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    public String getTid() {
+        return tid;
+    }
+
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
+
+    public String getSid() {
+        return sid;
+    }
+
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 
     public String getName() {
@@ -80,7 +89,6 @@ public class ProjectForm implements Serializable {
         this.name = name;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -88,5 +96,31 @@ public class ProjectForm implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getChosennum() {
+        return chosennum;
+    }
+
+    public void setChosennum(int chosennum) {
+        this.chosennum = chosennum;
+    }
+
+
 
 }

@@ -32,41 +32,39 @@ public class StudentForm implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    @Null(groups = { StudentCreateGroup.class })
     @NotNull(groups = { StudentUpdateGroup.class, StudentDeleteGroup.class })
-    private String SID="";
+    private String sid="";
 
-    @Null(groups = {StudentDeleteGroup.class })
-    @NotNull(groups = {StudentUpdateGroup.class,StudentCreateGroup.class })
-    @Size(min = 1, max = 20)
-    private String name="";
+    private String pid;
 
-    @Null(groups = { StudentDeleteGroup.class })
-    @NotNull(groups = { StudentUpdateGroup.class, StudentCreateGroup.class })
-    @Size(min = 1, max = 50)
+    private String mid;
+
+    private String name;
+
     @Email
-    private String email="";
+    private String email;
 
-    @Null(groups = { StudentDeleteGroup.class })
-    @NotNull(groups = { StudentUpdateGroup.class, StudentCreateGroup.class })
     @Past
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday=null;
 
-    @Null(groups = {StudentDeleteGroup.class})
-    @NotNull(groups = {StudentUpdateGroup.class,StudentCreateGroup.class })
-    private String tel="";
+    private String year=null;
 
-    @Null(groups = {StudentDeleteGroup.class})
-    @NotNull(groups = {StudentUpdateGroup.class,StudentCreateGroup.class })
-    private String my_class="";
 
-    public String getSID() {
-        return SID;
+    private String age=null;
+
+
+    private String tel;
+
+
+    private String my_class;
+
+    public String getSid() {
+        return sid;
     }
 
-    public void setSID(String SID) {
-        this.SID = SID;
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 
     public String getName() {
@@ -108,4 +106,38 @@ public class StudentForm implements Serializable {
     public void setMy_class(String my_class) {
         this.my_class = my_class;
     }
+
+    public String getPid() {
+        return pid;
+    }
+
+    public String getMid() {
+        return mid;
+    }
+
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+
+    public void setPid(String pid){
+        this.pid=pid;
+    }
+
 }

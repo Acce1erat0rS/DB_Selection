@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 public interface StudentService {
     void save(Student student);
 
+    void upsave(Student student);
+
     Student findOne(String id);
 
     Page<Student> findAll(Pageable pageable);

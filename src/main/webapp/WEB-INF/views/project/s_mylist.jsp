@@ -1,9 +1,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-<h2>重难点</h2>
+<h2>最终题目</h2>
 ${request}
-老师可以在这里发布困难的地方，同学们遇到自己不会的内容也可以在这里提交问题。大家可以一起来解决这些问题。
+<br><br>
 <div class="col-sm-12">
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-error">${f:h(errorMessage)}</div>
@@ -32,13 +32,13 @@ ${request}
 
 
                     <input type="hidden" name="pid" value="${f:h(project.pid)}" />
-                    <input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
-                    <input type="submit" class="btn btn-primary"
-                           name="redirectToChoose" value="选择该题" />
-                    <input type="submit" class="btn btn-default"
+                    <input type="submit" class="btn btn-outline-primary" name="show" value = "查看详情"/>
+                    <%--<input type="submit" class="btn btn-outline-warning"--%>
+                           <%--name="redirectToChoose" value="选择该题" />--%>
+                    <input type="submit" class="btn btn-outline-info"
                            name="redirectToUpdate" value="更新信息" />
-                    <input type="submit" class="btn btn-danger"
-                           name="redirectToDelete" value="删除" />
+                    <%--<input type="submit" class="btn btn-outline-danger"--%>
+                           <%--name="redirectToDelete" value="删除" />--%>
                 </form:form></td>
             </tr>
         </c:forEach>

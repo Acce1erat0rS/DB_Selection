@@ -12,8 +12,20 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.sun.org.omg.CORBA.ParameterMode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.hibernate.annotations.NamedNativeQuery;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+//import javax.persistence.NamedStoredProcedureQueries;
+//import javax.persistence.NamedStoredProcedureQuery;
+//import javax.persistence.ParameterMode;
+//import javax.persistence.StoredProcedureParameter;
+
 
 @Entity
 @Table(name = "User")

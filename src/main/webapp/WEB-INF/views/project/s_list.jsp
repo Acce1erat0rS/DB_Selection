@@ -7,10 +7,32 @@
 --%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<%@ page import="java.util.Random" %>
+<%Random a = new Random(); int x = a.nextInt(13)+1;%>
+<!-- COVER -->
+<section id="slider" class="halfheight m-0" style="background:url('/static/img/bjfu/<%=x%>.jpg') center">
 
-<h2>重难点</h2>
+
+    <div class="display-table">
+        <div class="display-table-cell vertical-align-middle">
+
+            <div class="container text-center">
+
+                <h1 class="fw-600 mt-30 mb-3 wow fadeIn" data-wow-delay="0.6s">选择毕设题目</h1>
+                <br>
+                <span class="fw-400 text-white wow fadeInUp fs-18 wow fadeIn" data-wow-delay="0.8s" data-wow-delay="0.8s">你好  <sec:authentication property="name"/></span>
+            </div>
+
+        </div>
+    </div>
+
+    <span class="raster overlay dark-3 z-index-0"><!-- dark|light overlay [0 to 9 opacity] --></span>
+</section>
+<!-- /COVER -->
+<br>
+<h1>学生选题</h1>
 ${request}
-老师可以在这里发布困难的地方，同学们遇到自己不会的内容也可以在这里提交问题。大家可以一起来解决这些问题。
+<br><br>
 <div class="col-sm-12">
     <c:if test="${not empty errorMessage}">
         <div class="alert alert-error">${f:h(errorMessage)}</div>
@@ -39,8 +61,8 @@ ${request}
 
 
                     <input type="hidden" name="pid" value="${f:h(project.pid)}" />
-                    <input type="submit" class="btn btn-default" name="sshow" value = "查看详情"/>
-                    <input type="submit" class="btn btn-primary"
+                    <input type="submit" class="btn btn-outline-primary" name="sshow" value = "查看详情"/>
+                    <input type="submit" class="btn btn-outline-danger"
                            name="redirectToChose" value="选择该题" />
                 </form:form></td>
             </tr>

@@ -44,15 +44,13 @@ public class ProjectServiceImpl implements ProjectService {
 
         project.setCreatedAt(now);
 
-        project.setChosennum(1);
-
         projectRepository.save(project);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Project findOne(String id) {
-        Project project = projectRepository.findOne(id);
+        Project project = projectRepository.findByPid(id);
         if (project == null) {
             throw new ResourceNotFoundException("Project [id=" + id
                     + "] is not found.");

@@ -4,11 +4,11 @@
 		<fieldset>
 			<legend>Update User</legend>
 			<div class="form-group">
-				<form:label path="SID" class="col col-sm-2 control-label">User Id</form:label>
+				<form:label path="sid" class="col col-sm-2 control-label">User Id</form:label>
 				<div class="col col-sm-10">
-					${f:h(studentForm.SID)}
-					<%--<form:input path="SID" class="form-control" />--%>
-					<form:errors path="SID" cssClass="text-danger" />
+					${f:h(studentForm.sid)}
+					<%--<form:input path="sid" class="form-control" />--%>
+					<form:errors path="sid" cssClass="text-danger" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -47,9 +47,8 @@
 				<form:label path="birthday" class="col col-sm-2 control-label">User Birth</form:label>
 				<div class="col col-sm-10">
 					${f:h(studentForm.birthday)}
-					<form:input path="birthday" class="form-control" />
-					<form:errors path="birthday" cssClass="text-danger" />
-					(* yyyy-MM-dd)
+						<form:input path="birthday" type="text" class="form-control datepicker" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false"/>
+						<form:errors path="birthday" cssClass="text-danger" />
 				</div>
 			</div>
 			<%--<div class="form-group">--%>
@@ -69,11 +68,11 @@
 			<%--</div>--%>
 			<div class="form-group">
 				<div class="col col-sm-10 col-sm-offset-2">
-					<form:hidden path="SID" value="${f:h(studentForm.SID)}" />
+					<form:hidden path="sid" value="${f:h(studentForm.sid)}" />
 					<%--<form:errors path="version" cssClass="text-danger" />--%>
 					<input type="submit" class="btn btn-primary" name="confirm"
-						value="Confirm" /> <input type="submit" class="btn btn-default"
-						name="redirectToList" value="Back to List" />
+						value="确认更新" /> <input type="submit" class="btn btn-outline-secondary"
+						name="redirectToList" value="返回列表" />
 				</div>
 			</div>
 		</fieldset>

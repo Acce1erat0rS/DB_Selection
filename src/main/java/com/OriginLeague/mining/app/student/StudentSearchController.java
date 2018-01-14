@@ -50,16 +50,16 @@ public class StudentSearchController {
     }
 
     @RequestMapping(params = "redirectToUpdate")
-    public String redirectToUpdateForm(@RequestParam("SID") String id,
+    public String redirectToUpdateForm(@RequestParam("sid") String id,
             RedirectAttributes attr) {
-        attr.addAttribute("SID", id);
+        attr.addAttribute("sid", id);
         return "redirect:/student/update?form";
     }
 
     @RequestMapping(params = "redirectToDelete")
-    public String redirectToDeleteForm(@RequestParam("SID") String id,
+    public String redirectToDeleteForm(@RequestParam("sid") String id,
             RedirectAttributes attr) {
-        attr.addAttribute("SID", id);
+        attr.addAttribute("sid", id);
         return "redirect:/student/delete?form";
     }
 }

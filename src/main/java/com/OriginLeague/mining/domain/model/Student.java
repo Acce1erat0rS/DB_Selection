@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "Student")
@@ -13,16 +14,16 @@ public class Student {
 
     @Id
     @Column(name = "SID", unique = true, nullable = false)
-    private String SID;
+    private String sid;
 
     @Column(name = "ID", unique = true, nullable = true)
-    private String ID;
+    private String id;
 
     @Column(name = "PID", unique = false, nullable = true)
-    private String PID;
+    private String pid;
 
     @Column(name = "MID", unique = false, nullable = true)
-    private String MID;
+    private String mid;
 
     @Column(name = "Name", unique = false, nullable = true)
     private String name;
@@ -42,36 +43,39 @@ public class Student {
     @Column(name = "Class", unique = false, nullable = true)
     private String m_class;
 
-    public String getSID() {
-        return SID;
+    @Column(name = "Birthday", unique = false, nullable = true)
+    private Date birthday;
+
+    public String getSid() {
+        return sid;
     }
 
-    public void setSID(String SID) {
-        this.SID = SID;
+    public void setSid(String sid) {
+        this.sid = sid;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getPID() {
-        return PID;
+    public String getPid() {
+        return pid;
     }
 
-    public void setPID(String PID) {
-        this.PID = PID;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
-    public String getMID() {
-        return MID;
+    public String getMid() {
+        return mid;
     }
 
-    public void setMID(String MID) {
-        this.MID = MID;
+    public void setMid(String mid) {
+        this.mid = mid;
     }
 
     public String getName() {
@@ -120,5 +124,13 @@ public class Student {
 
     public void setM_class(String m_class) {
         this.m_class = m_class;
+    }
+
+    public Date getBirthday(){
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday){
+        this.birthday=birthday;
     }
 }

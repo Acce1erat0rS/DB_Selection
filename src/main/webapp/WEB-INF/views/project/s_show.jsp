@@ -18,13 +18,13 @@
         <fieldset>
             <legend>New User</legend>
             <div class="form-group">
-                <form:label path="name" class="col col-sm-2 control-label">问题内容</form:label>
+                <form:label path="name" class="col col-sm-2 control-label">课题名称</form:label>
                 <div class="col col-sm-10">
                         ${f:h(project.name)}
                 </div>
             </div>
             <div class="form-group">
-                <form:label path="description" class="col col-sm-2 control-label">问题描述</form:label>
+                <form:label path="description" class="col col-sm-2 control-label">课题描述</form:label>
                 <div class="col col-sm-10">
                         ${f:h(project.description)}
                 </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-                <form:label path="description" class="col col-sm-2 control-label">项目类型</form:label>
+                <form:label path="description" class="col col-sm-2 control-label">课题类型</form:label>
                 <div class="col col-sm-10">
                         ${f:h(project.type)}
                 </div>
@@ -60,7 +60,7 @@
 
             <div class="form-group">
                 <div class="col col-sm-10 col-sm-offset-2">
-                    <input type="submit" class="btn btn-default" name="project/slist" value="返回" />
+                    <input type="submit" class="btn btn-outline-warning" name="project/slist" value="返回" />
                 </div>
             </div>
         </fieldset>

@@ -3,6 +3,7 @@ package com.OriginLeague.mining.domain.service.teacher;
 import com.OriginLeague.mining.domain.common.exception.ResourceNotFoundException;
 import com.OriginLeague.mining.domain.model.Teacher;
 import com.OriginLeague.mining.domain.repository.teacher.TeacherRepository;
+import com.OriginLeague.mining.domain.repository.user.UserRepository;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Date;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 @Service
 @Transactional
 public class TeacherServiceImpl implements TeacherService{
@@ -21,13 +22,22 @@ public class TeacherServiceImpl implements TeacherService{
     protected TeacherRepository teacherRepository;
 
     @Inject
+    protected UserRepository userRepository;
+
+
+    @Inject
     protected PasswordEncoder passwordEncoder;
 
     @Override
     public void save(Teacher teacher) {
+        teacherRepository.NewSave(teacher.getTid(),teacher.getMid(),teacher.getName(),teacher.getProfession(),teacher.getEmail(),teacher.getTel());
+        userRepository.floodsave(teacher.getTid(),"ROLE_TEA", passwordEncoder.encode("password"));
+        teacherRepository.updateinID(teacher.getId());
+    }
+    @Override
+    public void upsave(Teacher teacher){
         teacherRepository.save(teacher);
     }
-
     @Override
     @Transactional(readOnly = true)
     public Teacher findOne(String id) {

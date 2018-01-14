@@ -76,8 +76,8 @@ public class StudentController {
     }
 
     @RequestMapping(value = "update", params = "form", method = RequestMethod.GET)
-    public String updateForm(@RequestParam("SID") String id, StudentForm form,
-            Model model) {
+    public String updateForm(@RequestParam("sid") String id, StudentForm form,
+                             Model model) {
 
         Student student = studentService.findOne(id);
         form = beanMapper.map(student, form.getClass());
@@ -97,8 +97,8 @@ public class StudentController {
     }
 
     @RequestMapping(value = "update", params = "redo", method = RequestMethod.POST)
-    public String updateRedo(@RequestParam("SID") String id, StudentForm form,
-            Model model) {
+    public String updateRedo(@RequestParam("sid") String id, StudentForm form,
+                             Model model) {
 
 
         return "student/updateForm";
@@ -112,9 +112,9 @@ public class StudentController {
             return "student/updateForm";
         }
 
-        Student student = studentService.findOne(form.getSID());
+        Student student = studentService.findOne(form.getSid());
         beanMapper.map(form, student);
-        studentService.save(student);
+        studentService.upsave(student);
 
         return "redirect:/student/update?complete";
     }
@@ -127,8 +127,8 @@ public class StudentController {
     // delete flow
 
     @RequestMapping(value = "delete", params = "form", method = RequestMethod.GET)
-    public String deleteForm(@RequestParam("SID") String sid, StudentForm form,
-            Model model) {
+    public String deleteForm(@RequestParam("sid") String sid, StudentForm form,
+                             Model model) {
 
         Student student = studentService.findOne(sid);
         beanMapper.map(student, form);
@@ -146,7 +146,7 @@ public class StudentController {
             return "redirect:/student/list";
         }
 
-        Student student = studentService.findOne(form.getSID());
+        Student student = studentService.findOne(form.getSid());
         beanMapper.map(form, student);
 
         studentService.delete(student);

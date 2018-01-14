@@ -19,33 +19,73 @@
     <link href="static/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="static/css/loaders.css" rel="stylesheet" type="text/css" />
     <script>
-        var canvasOne;
         var ctx;
         var audioContext;
         var analyser;
         var mic;
+        var recorder;
+        var canvasOne;
 
-        function init() {
+        function startUserMedia(stream) {
+
+
+            mic = audioContext.createMediaStreamSource(stream);
+
+            recorder = new Recorder(mic);
+
+        }
+
+        function startRecording(button) {
             canvasOne = document.getElementById('canvasOne');
             ctx = canvasOne.getContext("2d");
 
 
-        }
+            recorder && recorder.record();
 
-        navigator.getMedia = ( navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
+            button.disabled = true;
+            button.nextElementSibling.disabled = false;
 
-        navigator.getMedia ( { audio: true }, function (stream) {
-            audioContext = new (window.AudioContext || window.webkitAudioContext);
-            mic = audioContext.createMediaStreamSource(stream);
+
             analyser= audioContext.createAnalyser();
+
             analyser.fftSize = 256;
             mic.connect(analyser);
             drawSpectrum();
-        },function(){});
 
+
+        }
+        var myReq;
+
+        function stopRecording(button) {
+            canvasOne = document.getElementById('canvasOne');
+            ctx = canvasOne.getContext("2d");
+            ctx.clearRect(0,0,1000,1000);
+            recorder && recorder.stop();
+            button.disabled = true;
+            button.previousElementSibling.disabled = false;
+            window.cancelAnimationFrame(myReq);
+
+            createDownloadLink();
+            recorder.clear();
+        }
+
+        function createDownloadLink() {
+            recorder && recorder.exportWAV(function(blob) {
+                var url = URL.createObjectURL(blob);
+                var li = document.createElement('li');
+                var au = document.createElement('audio');
+                var hf = document.createElement('a');
+
+                au.controls = true;
+                au.src = url;
+                hf.href = url;
+                hf.download = new Date().toISOString() + '.wav';
+                hf.innerHTML = hf.download;
+                li.appendChild(au);
+                li.appendChild(hf);
+                recordingslist.appendChild(li);
+            });
+        }
 
 
         function drawSpectrum() {
@@ -59,7 +99,7 @@
             var capHeight = 2;//
             var array = new Uint8Array(analyser.frequencyBinCount);
             analyser.getByteFrequencyData(array);
-            var step = Math.round(array.length / meterNum);//计算从analyser中的采样步长
+
 
             //清理画布
             ctx.clearRect(0, 0, cwidth, cheight);
@@ -76,10 +116,27 @@
                 var value = array[i]/3;
                 ctx.fillRect(i * (meterWidth+gap), cheight - value + capHeight,meterWidth, cheight);
             }
-            requestAnimationFrame(drawSpectrum)
-        };
+            myReq=requestAnimationFrame(drawSpectrum);
+        }
+
+
+        window.onload=function init(){
+            audioContext = new (window.AudioContext || window.webkitAudioContext);
+            navigator.getMedia = ( navigator.getUserMedia ||
+                navigator.webkitGetUserMedia ||
+                navigator.mozGetUserMedia ||
+                navigator.msGetUserMedia);
+
+            navigator.getMedia ( { audio: true }, startUserMedia,function(){});
+
+        }
+
     </script>
+
 </head>
+
+
+
 
 
 
@@ -89,14 +146,15 @@
     </Script>
 </c:if>
 
-<body onload='document.f.j_username.focus();init();'>
+<%-----------<body onload='document.f.j_username.focus();'>----------------------%>
+<body>
 <div class='login'>
     <div class='login_title'>
         <span>
             <img src='static/img/logo.jpg.png' width="100%">
 
-            <p style="font-family: 'Noto Sans S Chinese';font-size:15px;margin:20px 20px 0px 0px; text-align: center">本科毕业设计选题系统</p>
-            <p style="font-family: 'Noto Sans S Chinese';font-size:12px;margin-bottom:5px ">请登录</p>
+            <p style="font-family: 'Noto Sans S Chinese';font-size:15px;margin:20px 20px 0px 0px; text-align: center;opacity: 0.8">本科毕业设计选题系统</p>
+            <p style="font-family: 'Noto Sans S Chinese';font-size:12px;margin-bottom:5px;opacity: 0.7 ">请登录</p>
         </span>
     </div>
 
@@ -130,19 +188,24 @@
                 </div>
             </div>
             <div class='login_fields__password'>
-                <div class='icon'>
-                    <img alt="" src='static/img/key.png'>
-                </div>
-                <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
-                <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-                    <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+                <%--<div class='icon'>--%>
+                    <%--<img alt="" src='static/img/key.png'>--%>
+                <%--</div>--%>
+                <%--<input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">--%>
+                <div class='validation' style="opacity: 1; right: -5px;top: -3px; height: 0px">
+                    <canvas class="J_codeimg" id="myCanvas" onclick="Code();" style="height: 0px">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
                 </div>
             </div>
+            <div>
+                <div class="g-recaptcha" data-sitekey="6LfHfEAUAAAAAOWKRSbtdl3vN2cgh05fb-46Sayu" style="margin: 10px"></div>
+            </div>
+
             <div class='login_fields__submit'>
                 <input name="submit" type='submit' value='登录'>
             </div>
             <div class='login_fields_voicewave'>
-                <canvas id="canvasFormAudio" width="0" height="0"></canvas>
+                <button onclick="startRecording(this);" style="margin-top: 20px">record</button>
+                <button onclick="stopRecording(this);" disabled>stop</button>
                 <canvas id="canvasOne" width=320 height=80% ></canvas>
             </div>
         </div>
@@ -172,6 +235,8 @@
 <script type="text/javascript" src="static/js/Particleground.js"></script>
 <script type="text/javascript" src="static/js/Treatment.js"></script>
 <script type="text/javascript" src="static/js/jquery.mockjax.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <%--<script type="text/javascript" src='js/stopExecutionOnTimeout.js?t=1'></script>--%>
 <%--<script type="text/javascript" src="layui/layui.js"></script>--%>
 <script type="text/javascript">
@@ -317,9 +382,11 @@
         });
     }
 
-
-
 </script>
+
+
+
+
 
 </body>
 </html>

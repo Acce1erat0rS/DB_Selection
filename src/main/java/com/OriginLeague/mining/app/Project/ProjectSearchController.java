@@ -117,7 +117,7 @@ public class ProjectSearchController {
 
     @RequestMapping(params="redirectToTeacherChose")
     public String showPlist(@RequestParam("pid") String id,ProjectForm form,
-                                Model model,Pageable pageable){
+                            Model model,Pageable pageable){
         Page<firstchoice> page =  firstService.findByPID(id,pageable);
         ArrayList<subs> sublist = new ArrayList<>();
 
@@ -129,7 +129,7 @@ public class ProjectSearchController {
             s.setLogtime(fc.getLogtime());
             s.setSEmail(student.getEmail());
             s.setSN(student.getName());
-            s.setSID(student.getSID());
+            s.setSID(student.getSid());
             sublist.add(s);
 //            fc.setSID(student.getName());
         }

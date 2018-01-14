@@ -69,6 +69,16 @@ public class ProjectController {
         return "project/createConfirm";
     }
 
+    @RequestMapping(params = "sadd", method = RequestMethod.POST)
+    public String addSProject(@RequestParam("pid") String id, ProjectForm form,
+                              Model model) {
+        Project project = projectService.findOne(id);
+        project.setChosennum(project.getChosennum()+1);
+        beanMapper.map(project, form);
+        projectService.save(project);
+        return "redirect:project/slist";
+    }
+
     @RequestMapping(params = "show", method = RequestMethod.POST)
     public String showConfirm(@RequestParam("pid") String id, ProjectForm form,
                               Model model) {
@@ -83,7 +93,7 @@ public class ProjectController {
 
     @RequestMapping(params = "sshow", method = RequestMethod.POST)
     public String showSProject(@RequestParam("pid") String id, ProjectForm form,
-                              Model model) {
+                               Model model) {
 
         Project project = projectService.findOne(id);
         ProjectForm keyPointForm = new ProjectForm();
@@ -197,11 +207,12 @@ public class ProjectController {
                              Model model) {
 
         Project project = projectService.findOne(id);
-        form = beanMapper.map(project, form.getClass());
+        beanMapper.map(project, form);
 
         model.addAttribute(project);
         return "project/deleteForm";
     }
+
 
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String delete(

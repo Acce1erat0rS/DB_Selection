@@ -1,7 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
-<h2>重难点</h2>
+<h2>老师选择学生</h2>
 ${request}
 老师请选择一位同学完成这一个题目的毕业设计
 <div class="col-sm-12">
@@ -12,7 +12,7 @@ ${request}
 	<table class="table table-striped table-bordered table-condensed">
 		<thead>
 		<tr>
-			<th>题目编号</th>
+			<th>课题编号</th>
 			<th>学号</th>
 			<th>姓名</th>
 			<th>联系方式</th>
@@ -33,8 +33,8 @@ ${request}
 						class="form-inline">
 					<input type="hidden" name="pid" value="${f:h(subs.PID)}" />
 					<input type="hidden" name="sid" value="${f:h(subs.SID)}" />
-					<input type="submit" class="btn btn-default" name="show" value = "查看详情"/>
-					<input type="submit" class="btn btn-default"
+					<input type="submit" class="btn btn-outline-info" name="show" value = "查看详情"/>
+					<input type="submit" class="btn btn-outline-warning"
 						   name="finalize" value="选择该生" />
 				</form:form></td>
 			</tr>

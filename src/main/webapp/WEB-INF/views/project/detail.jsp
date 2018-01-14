@@ -4,7 +4,7 @@
 		<fieldset>
 			<legend>课题详情</legend>
 			<div class="form-group">
-				<form:label path="name" class="col col-sm-2 control-label">Project Id</form:label>
+				<form:label path="name" class="col col-sm-2 control-label">课题编号</form:label>
 				<div class="col col-sm-10">
 					${f:h(projectForm.id)}
 					<%--<form:input path="id" type="hidden" />--%>
@@ -12,7 +12,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<form:label path="name" class="col col-sm-2 control-label">Project Name</form:label>
+				<form:label path="name" class="col col-sm-2 control-label">课题名称</form:label>
 				<div class="col col-sm-10">
 					<form:input path="name" class="form-control" />
 					<form:errors path="name" cssClass="text-danger" />

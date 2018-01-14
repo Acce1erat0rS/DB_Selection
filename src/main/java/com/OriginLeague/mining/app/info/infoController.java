@@ -21,4 +21,14 @@ public class infoController {
     public String toCal(String name, Model model){
         return "info/course_calender";
     }
+
+    @RequestMapping("welcome")
+    public String toWelcome(String name, Model model){
+        return "info/welcome";
+    }
+
+    @RequestMapping("instruction")
+    public String toInstruction(String name, Model model){
+        return "info/instruction";
+    }
 }

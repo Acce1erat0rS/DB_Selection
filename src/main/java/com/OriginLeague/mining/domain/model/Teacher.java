@@ -1,5 +1,7 @@
 package com.OriginLeague.mining.domain.model;
 
+import org.hibernate.annotations.NamedNativeQuery;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

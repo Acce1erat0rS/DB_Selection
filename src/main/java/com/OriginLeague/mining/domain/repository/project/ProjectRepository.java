@@ -32,4 +32,6 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
     @Query(value = "update project set SID=?2 where PID=?1",nativeQuery = true)
     int finalUpdate(String pid, String sid);
 
+
+    Project findByPid(String pid);
 }

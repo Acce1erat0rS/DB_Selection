@@ -42,8 +42,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col col-sm-10 col-sm-offset-2">
-					<input type="submit" class="btn btn-primary" name="confirm"
-						value="Confirm" /> <input type="submit" class="btn btn-default"
+					<input type="submit" class="btn btn-outline-warning" name="confirm"
+						value="Confirm" /> <input type="submit" class="btn btn-outline-primary"
 						name="redirectToList" value="Back to List" />
 				</div>
 			</div>

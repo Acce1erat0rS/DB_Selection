@@ -82,7 +82,7 @@ public class TeacherController {
             Model model) {
 
         Teacher teacher = teacherService.findOne(id);
-        form = beanMapper.map(teacher, form.getClass());
+        beanMapper.map(teacher, form);
 
         model.addAttribute(teacher);
 
@@ -116,7 +116,7 @@ public class TeacherController {
 
         Teacher teacher = teacherService.findOne(form.getTid());
         teacher = beanMapper.map(form, teacher.getClass());
-        teacherService.save(teacher);
+        teacherService.upsave(teacher);
 
         return "redirect:/teacher/update?complete";
     }
